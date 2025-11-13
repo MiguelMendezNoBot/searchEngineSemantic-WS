@@ -126,48 +126,6 @@ streamlit
 owlready2
 ```
 
-## 🐛 Solución de Problemas
-
-### Error: "streamlit: command not found"
-- Asegúrate de tener el entorno virtual activado
-- Reinstala: `pip install streamlit`
-
-### Error al cargar criptomonedas.owl
-- Verifica que el archivo esté en la raíz del proyecto
-- Revisa las rutas en `app.py`
-
-### Error de permisos en Windows
-- Ejecuta PowerShell como administrador
-- O usa: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
-
-## 🌐 Deploy en Producción
-
-### Opción 1: Streamlit Community Cloud (Recomendado - Gratis)
-
-1. Asegúrate de que tu proyecto esté en GitHub
-2. Ve a [share.streamlit.io](https://share.streamlit.io)
-3. Inicia sesión con tu cuenta de GitHub
-4. Click en "New app"
-5. Selecciona tu repositorio: `MiguelMendezNoBot/searchEngineSemantic-WS`
-6. Rama: `main`
-7. Archivo principal: `app.py`
-8. Click en "Deploy"
-
-### Opción 2: Render
-
-1. Ve a [render.com](https://render.com)
-2. Conecta tu repositorio de GitHub
-3. Selecciona "Web Service"
-4. Build Command: `pip install -r requirements.txt`
-5. Start Command: `streamlit run app.py --server.port=$PORT --server.address=0.0.0.0`
-
-### Opción 3: Railway
-
-1. Ve a [railway.app](https://railway.app)
-2. Conecta tu repositorio
-3. Railway detectará automáticamente que es un proyecto Python
-4. Despliega automáticamente
-
 ## 👤 Autor
 
 Miguel Méndez
@@ -177,44 +135,6 @@ Miguel Méndez
 ## 📄 Licencia
 
 Este proyecto es de código abierto y está disponible para uso educativo.
-
-## 🤝 Contribuciones
-
-Las contribuciones son bienvenidas. Por favor:
-
-1. Fork el proyecto
-2. Crea una rama para tu feature:
-   ```bash
-   git checkout -b feature/AmazingFeature
-   ```
-3. Commit tus cambios:
-   ```bash
-   git commit -m 'Add: Amazing Feature'
-   ```
-4. Push a la rama:
-   ```bash
-   git push origin feature/AmazingFeature
-   ```
-5. Abre un Pull Request
-
-## 📞 Contacto y Soporte
-
-Si tienes preguntas, problemas o sugerencias:
-
-- 🐛 Abre un [Issue](https://github.com/MiguelMendezNoBot/searchEngineSemantic-WS/issues)
-- 💬 Inicia una [Discussion](https://github.com/MiguelMendezNoBot/searchEngineSemantic-WS/discussions)
-
-## 📚 Recursos Adicionales
-
-- [Documentación de Streamlit](https://docs.streamlit.io)
-- [Documentación de Owlready2](https://owlready2.readthedocs.io)
-- [Guía de Ontologías OWL](https://www.w3.org/TR/owl2-overview/)
-
----
-
-⭐ **Si este proyecto te fue útil, considera darle una estrella en GitHub!**
-
----
 
 ## 🎓 Proyecto Académico
 
