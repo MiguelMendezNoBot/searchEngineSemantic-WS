@@ -1,0 +1,1931 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/cristian/ontologies/2025/10/untitled-ontology-36#"
+     xml:base="http://www.semanticweb.org/cristian/ontologies/2025/10/untitled-ontology-36"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:untitled-ontology-4="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/10/untitled-ontology-36"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#afectaA -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#afectaA">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Estafa"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Actores_del_ecosistema"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#almacena -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#almacena">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#BilleteraDigital"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Criptomoneda"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#amenaza -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#amenaza">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Ataque"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Exchange"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#compiteCon -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#compiteCon">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Altcoin"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#MecanismoConsenso"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#ejecutaEn -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#ejecutaEn">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Finanzas_descentralizadas"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Blockchain"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#ejecutaSobre -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#ejecutaSobre">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Exchange"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Blockchain"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#emitidoEn -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#emitidoEn">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Token"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Blockchain"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#funcionaSin -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#funcionaSin">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Exchange"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Custodia"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#implementadaEn -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#implementadaEn">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Custodia"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#mitiga -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#mitiga">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Custodia"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Riesgos_y_seguridad"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#opera -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#opera">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Mercado"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Criptomoneda"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Token"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#partcipaEn -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#partcipaEn">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Nodo"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Blockchain"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#protege -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#protege">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Custodia"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#realizaTransaccionesEn -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#realizaTransaccionesEn">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#BilleteraDigital"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Blockchain"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#regula -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#regula">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#MecanismoConsenso"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Blockchain"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#seIntercambiaEn -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#seIntercambiaEn">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Criptomoneda"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Token"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Exchange"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#seUsaEN -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#seUsaEN">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Stablecoin"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Finanzas_descentralizadas"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#soporta -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#soporta">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Blockchain"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Criptomoneda"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Token"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#usa -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#usa">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Finanzas_descentralizadas"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Token"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#utilizadaPor -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#utilizadaPor">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Custodia"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Actores_del_ecosistema"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#topObjectProperty -->
+
+    <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#topObjectProperty">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#TransitiveProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ReflexiveProperty"/>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#accesibilidad -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#accesibilidad">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Blockchain"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#accesibilidadGlobal -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#accesibilidadGlobal">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Finanzas_descentralizadas"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#activoDeReferencia -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#activoDeReferencia">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Stablecoin"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#algoritmoConsenso -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#algoritmoConsenso">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#MecanismoConsenso"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#algoritmoDeSelección -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#algoritmoDeSelección">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#MecanismoConsenso"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#algoritmoHash -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#algoritmoHash">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#MecanismoConsenso"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#automatizacionPorContratos -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#automatizacionPorContratos">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Exchange"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#añoCreación -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#añoCreación">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Criptomoneda"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#blockchainBase -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#blockchainBase">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#capitalDisponible"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Exchange"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#cantidadDeTokensRequeridos -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#cantidadDeTokensRequeridos">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#MecanismoConsenso"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#cantidadVíctimas -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#cantidadVíctimas">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Ataque"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#capitalDisponible -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#capitalDisponible"/>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#colapsoValor -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#colapsoValor">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Ataque"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#complejidadComputacional -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#complejidadComputacional">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Proceso"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#complejidadEjecución -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#complejidadEjecución">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Ataque"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#complejidadOperativa -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#complejidadOperativa">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Ataque"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#composición -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#composición">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Ataque"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#consumoEnergetico -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#consumoEnergetico">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Blockchain"/>
+            </owl:Restriction>
+        </rdfs:domain>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#consumoEnergeticoEstimado -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#consumoEnergeticoEstimado">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#MecanismoConsenso"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#costoAdquisición -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#costoAdquisición">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Custodia"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#costoAtaque -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#costoAtaque">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Ataque"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#dependenciaDeDemanda -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#dependenciaDeDemanda">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Stablecoin"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#descentralización -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#descentralización">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Exchange"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#descripcion -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#descripcion">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Proceso"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#dificultadActual -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#dificultadActual">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Proceso"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#dificultadDeMinado -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#dificultadDeMinado">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#MecanismoConsenso"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#dificultadEjecucion -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#dificultadEjecucion">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Ataque"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#duracion -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#duracion">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#eficienciaEnergetica -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#eficienciaEnergetica">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#escalabilidad -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#escalabilidad">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Blockchain"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#estadoConexión -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#estadoConexión">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Custodia"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#estandar -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#estandar">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Token"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#experienciaSocial -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#experienciaSocial">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#fechaCreación -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#fechaCreación">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Infraestructura_y_procesos"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#fechaImplementacion -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#fechaImplementacion">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Proceso"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#funcion -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#funcion">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#MecanismoConsenso"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#garantiaFabricante -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#garantiaFabricante">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#hashPropio -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#hashPropio">
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Blockchain"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#impactoEconomico -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#impactoEconomico">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Ataque"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#intencionMaliciosa -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#intencionMaliciosa">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Ataque"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#intencionalidad -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#intencionalidad">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Estafa"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#jurisdiccionLegal -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#jurisdiccionLegal">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Ataque"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#macanismoEstabilizacion -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#macanismoEstabilizacion">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Stablecoin"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#manipulacionPrecio -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#manipulacionPrecio">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#marca -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#marca">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Custodia"/>
+            </owl:Restriction>
+        </rdfs:domain>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#mecanismoParticipacion -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#mecanismoParticipacion">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#mecanismoValidacion -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#mecanismoValidacion">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#montoRobado -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#montoRobado">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Estafa"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#nivelDeLiquidez -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#nivelDeLiquidez">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#nivelDeRiesgo -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#nivelDeRiesgo">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#nivelDeSeguridad -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#nivelDeSeguridad">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#BilleteraDigital"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#nivelDescentralización -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#nivelDescentralización">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Criptomoneda"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#nivelSofisticación -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#nivelSofisticación">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Ataque"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#nombre -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#nombre">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Criptomoneda"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#nombreConsenso -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#nombreConsenso">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#MecanismoConsenso"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#nombreProc -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#nombreProc">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Proceso"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#operador -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#operador">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Nodo"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#plataforma -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#plataforma">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Finanzas_descentralizadas"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#propositoRastreo -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#propositoRastreo">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#protocoloAsociado -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#protocoloAsociado">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Exchange"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#proveedorDeServicios -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#proveedorDeServicios">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Custodia"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#proyectoAsociado -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#proyectoAsociado">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Altcoin"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#recursoNecesario -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#recursoNecesario">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#redQueUsa -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#redQueUsa">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#MecanismoConsenso"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#rendimientoAnual -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#rendimientoAnual">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#requerimiento -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#requerimiento">
+        <rdfs:comment>Empresas que operan con moneda virtual en Nueva York</rdfs:comment>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#riesgoImpermanentLoss -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#riesgoImpermanentLoss">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#seguridad -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#seguridad">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Infraestructura_y_procesos"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#seguridadContraAtaques -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#seguridadContraAtaques">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#MecanismoConsenso"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#segurosContraPérdidas -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#segurosContraPérdidas">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Custodia"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#simbolo -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#simbolo">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Criptomoneda"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#simboloToken -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#simboloToken">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Token"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#sincronizacionInicial -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#sincronizacionInicial">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#soportaMultimoneda -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#soportaMultimoneda">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#BilleteraDigital"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tiempoBloquePromedio -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tiempoBloquePromedio">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#MecanismoConsenso"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tiempoEjecucion -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tiempoEjecucion">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Proceso"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tieneInnovacion -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tieneInnovacion">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Altcoin"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tipoConsensusVulnerable -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tipoConsensusVulnerable">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tipoDeAplicación -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tipoDeAplicación">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tipoDispositivo -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tipoDispositivo">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tipoEstafa -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tipoEstafa">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Estafa"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tipoProyecto -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tipoProyecto">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tipoServicio -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tipoServicio">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Finanzas_descentralizadas"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tipoToken -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tipoToken">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Token"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tipoValidacion -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tipoValidacion">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Proceso"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#toleranciaAlRiesgo -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#toleranciaAlRiesgo">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#transaccionesIniciales -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#transaccionesIniciales">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#volatilidad -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#volatilidad">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Mercado"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#volatilidadCripto -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#volatilidadCripto">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Altcoin"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#volumenOperacionDiaria -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#volumenOperacionDiaria">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#volumenTransacciones -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#volumenTransacciones">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Mercado"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#vulnerabilidadOnline -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#vulnerabilidadOnline">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Actores_del_ecosistema -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Actores_del_ecosistema">
+        <rdfs:comment>Participantes en el mundo cripto - mineros, usuarios, exchanges, desarrolladores, reguladores, ballenas.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Altcoin -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Altcoin">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
+        <rdfs:comment>Cualquier criptomoneda que NO es Bitcoin</rdfs:comment>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://dbpedia.org/resource/Altcoin</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Ataque -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Ataque">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Riesgos_y_seguridad"/>
+        <rdfs:comment>Acciones maliciosas - ataque 51%, dusting attack, ataque a puentes, phishing.</rdfs:comment>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://dbpedia.org/resource/Cyberattack</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#BilleteraDigital -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#BilleteraDigital">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Custodia"/>
+        <rdfs:comment>ALmacena y gestiona criptoactivos</rdfs:comment>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://dbpedia.org/resource/Cryptocurrency_wallet</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Blockchain -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Blockchain">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
+        <rdfs:comment>Base de datos distribuida inmutable</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Criptomoneda -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Criptomoneda">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Token"/>
+        <rdfs:comment>&quot;Es un activo digital&quot;</rdfs:comment>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://dbpedia.org/resource/Cryptocurrency</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Custodia -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Custodia">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Riesgos_y_seguridad"/>
+        <rdfs:comment>Almacenamiento seguro de criptos - puede ser por terceros o autocustodia (billetera propia).</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Estafa -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Estafa">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Riesgos_y_seguridad"/>
+        <rdfs:comment>Fraudes intencionales</rdfs:comment>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://dbpedia.org/resource/Confidence_trick</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Exchange -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Exchange">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Actores_del_ecosistema"/>
+        <rdfs:comment>plataforma para comerciar criptomonedas</rdfs:comment>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://dbpedia.org/resource/Cryptocurrency_exchange</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Finanzas_descentralizadas -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Finanzas_descentralizadas">
+        <rdfs:comment>Servicios financieros sin bancos usando contratos inteligentes (préstamos, staking, trading).</rdfs:comment>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://dbpedia.org/resource/Decentralized_finance</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Infraestructura_y_procesos -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Infraestructura_y_procesos">
+        <rdfs:comment>Estructuras que hacen funcionar las criptos - blockchain, nodos, validación, consenso.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#MecanismoConsenso -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#MecanismoConsenso">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Infraestructura_y_procesos"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Proceso"/>
+        <rdfs:comment>Métodos para que nodos acuerden estado de red - PoW (Bitcoin), PoS (Ethereum), DPoS.</rdfs:comment>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://dbpedia.org/resource/Consensus_(computer_science)</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Mercado -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Mercado">
+        <rdfs:comment>Espacio de compra/venta con liquidez, volatilidad, pares de trading, capitalización.</rdfs:comment>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://dbpedia.org/resource/Financial_market</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Nodo -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Nodo">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Blockchain"/>
+        <rdfs:comment>Computadora conectada que valida y almacena blockchain</rdfs:comment>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://dbpedia.org/resource/Node_(networking)</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Proceso -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Proceso">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Infraestructura_y_procesos"/>
+        <rdfs:comment>Actividades operativas - minería, staking, trading, validación de transacciones.</rdfs:comment>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://dbpedia.org/resource/Business_process</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Riesgos_y_seguridad -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Riesgos_y_seguridad">
+        <rdfs:comment>Vulnerabilidades y amenazas - ataques, estafas, hackeos, pérdida de fondos.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Stablecoin -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Stablecoin">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
+        <rdfs:comment>Cripto con precio estable</rdfs:comment>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://dbpedia.org/resource/Stablecoin</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas">
+        <rdfs:comment>Clasificación de monedas digitales</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Token -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Token">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
+        <rdfs:comment>Activo digital</rdfs:comment>
+        <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://dbpedia.org/resource/Token_(blockchain)</rdfs:seeAlso>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#airdrop -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#airdrop">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Finanzas_descentralizadas"/>
+        <rdfs:comment>Distribución gratuita de tokens como marketing o recompensa.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#ataque51 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#ataque51">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Ataque"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Riesgos_y_seguridad"/>
+        <rdfs:comment>Control de más del 50% del poder de minería para manipular la blockchain.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#billeteraFria -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#billeteraFria">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#BilleteraDigital"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Custodia"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Riesgos_y_seguridad"/>
+        <untitled-ontology-4:soportaMultimoneda rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</untitled-ontology-4:soportaMultimoneda>
+        <rdfs:comment>Almacenamiento de criptos sin conexión a internet (mayor seguridad).</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#bitcoin -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#bitcoin">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Criptomoneda"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
+        <untitled-ontology-4:añoCreación rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-01-03T00:00:00</untitled-ontology-4:añoCreación>
+        <untitled-ontology-4:nivelDescentralización rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8.5</untitled-ontology-4:nivelDescentralización>
+        <untitled-ontology-4:nombre>Bitcoin</untitled-ontology-4:nombre>
+        <untitled-ontology-4:simbolo>BTC</untitled-ontology-4:simbolo>
+        <rdfs:comment>Primera criptomoneda (2009), usa prueba de trabajo (PoW).</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#bitcoinCash -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#bitcoinCash">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Altcoin"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
+        <untitled-ontology-4:proyectoAsociado>Bitcoin</untitled-ontology-4:proyectoAsociado>
+        <untitled-ontology-4:tieneInnovacion rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</untitled-ontology-4:tieneInnovacion>
+        <rdfs:comment>Fork de Bitcoin (versión nueva de la red).</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#bitlicense -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#bitlicense">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Infraestructura_y_procesos"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Proceso"/>
+        <untitled-ontology-4:requerimiento>Se requiere en empresas que utilizan monedas virtuales en NY</untitled-ontology-4:requerimiento>
+        <rdfs:comment>Es un marco regulatorio para actividades con monedas virtuales</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#bloqueGenesis -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#bloqueGenesis">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Blockchain"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
+        <untitled-ontology-4:escalabilidad rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</untitled-ontology-4:escalabilidad>
+        <rdfs:comment>Primer bloque de una blockchain.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#cardano -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#cardano">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Altcoin"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
+        <untitled-ontology-4:proyectoAsociado>Blockchain de tercera generación</untitled-ontology-4:proyectoAsociado>
+        <untitled-ontology-4:tieneInnovacion rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</untitled-ontology-4:tieneInnovacion>
+        <rdfs:comment>Altcoin (criptomoneda alternativa a Bitcoin).</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#centralizado -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#centralizado">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Actores_del_ecosistema"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Exchange"/>
+        <untitled-ontology-4:automatizacionPorContratos rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</untitled-ontology-4:automatizacionPorContratos>
+        <untitled-ontology-4:blockchainBase>Ninguno</untitled-ontology-4:blockchainBase>
+        <untitled-ontology-4:capitalDisponible>Ninguno</untitled-ontology-4:capitalDisponible>
+        <untitled-ontology-4:descentralización rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1</untitled-ontology-4:descentralización>
+        <untitled-ontology-4:protocoloAsociado>Sistema tradicional</untitled-ontology-4:protocoloAsociado>
+        <rdfs:comment>Opera con autoridad central (ej. exchange centralizado).</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#contratoInteligente -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#contratoInteligente">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Infraestructura_y_procesos"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Proceso"/>
+        <untitled-ontology-4:complejidadComputacional rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">7</untitled-ontology-4:complejidadComputacional>
+        <untitled-ontology-4:descripcion>Programa autoejecutable que se ejecuta en blockchain cuando se cumplen condiciones específicas</untitled-ontology-4:descripcion>
+        <untitled-ontology-4:fechaImplementacion rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2015-07-30T00:00:00</untitled-ontology-4:fechaImplementacion>
+        <untitled-ontology-4:tiempoEjecucion rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.5</untitled-ontology-4:tiempoEjecucion>
+        <untitled-ontology-4:tipoValidacion>Transacciones</untitled-ontology-4:tipoValidacion>
+        <rdfs:comment>Acuerdo automatizado</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#dao -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#dao">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Actores_del_ecosistema"/>
+        <rdfs:comment>MakerDAO - votas con tokens MKR sobre cambios del protocolo.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#descentralizado -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#descentralizado">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Actores_del_ecosistema"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Exchange"/>
+        <untitled-ontology-4:automatizacionPorContratos rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</untitled-ontology-4:automatizacionPorContratos>
+        <untitled-ontology-4:blockchainBase>Múltiples</untitled-ontology-4:blockchainBase>
+        <untitled-ontology-4:capitalDisponible>Múltiples</untitled-ontology-4:capitalDisponible>
+        <untitled-ontology-4:descentralización rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">5</untitled-ontology-4:descentralización>
+        <untitled-ontology-4:protocoloAsociado>Sistema de intercambio</untitled-ontology-4:protocoloAsociado>
+        <rdfs:comment>Uniswap - intercambias directo con otros, sin intermediario.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#dustingattack -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#dustingattack">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Ataque"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Riesgos_y_seguridad"/>
+        <untitled-ontology-4:complejidadEjecución>baja</untitled-ontology-4:complejidadEjecución>
+        <untitled-ontology-4:impactoEconomico>individual</untitled-ontology-4:impactoEconomico>
+        <untitled-ontology-4:intencionMaliciosa>Robo</untitled-ontology-4:intencionMaliciosa>
+        <untitled-ontology-4:jurisdiccionLegal>Actividad ilegal</untitled-ontology-4:jurisdiccionLegal>
+        <untitled-ontology-4:nivelSofisticación>profesional</untitled-ontology-4:nivelSofisticación>
+        <rdfs:comment>e llegan 0.00001 BTC de desconocidos para rastrearte.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#ethereum -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#ethereum">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Altcoin"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
+        <untitled-ontology-4:proyectoAsociado>Blockchain programable</untitled-ontology-4:proyectoAsociado>
+        <untitled-ontology-4:tieneInnovacion rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</untitled-ontology-4:tieneInnovacion>
+        <rdfs:comment>ETH, plataforma donde corren NFTs, DeFi, contratos inteligentes.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#fork -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#fork">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Infraestructura_y_procesos"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Proceso"/>
+        <rdfs:comment>Actualización que divide la blockchain en dos versiones, creando una nueva moneda o reglas.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#funcionCripto -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#funcionCripto">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Criptomoneda"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
+        <untitled-ontology-4:añoCreación rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1976-01-25T00:00:00</untitled-ontology-4:añoCreación>
+        <untitled-ontology-4:nivelDescentralización rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0</untitled-ontology-4:nivelDescentralización>
+        <untitled-ontology-4:nombre>Función Criptográfica</untitled-ontology-4:nombre>
+        <untitled-ontology-4:simbolo>CRYPTO</untitled-ontology-4:simbolo>
+        <rdfs:comment>Blockchain nativa</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#funcionToken -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#funcionToken">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Token"/>
+        <untitled-ontology-4:estandar>ERC-20</untitled-ontology-4:estandar>
+        <untitled-ontology-4:simboloToken>TOKEN</untitled-ontology-4:simboloToken>
+        <untitled-ontology-4:tipoToken>fungible</untitled-ontology-4:tipoToken>
+        <rdfs:comment>esta creado sobre un blockchain</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#impactoSistemaFinanciero -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#impactoSistemaFinanciero">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Infraestructura_y_procesos"/>
+        <rdfs:comment>Desafían a la banca al ofrecer finanzas descentralizadas sin intermediarios, promoviendo la innovación y la adopción digital, aunque con riesgos y desafíos regulatorios.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#interoperatividad -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#interoperatividad">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Blockchain"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
+        <rdfs:comment>capacidad de comunicacion de diferentes redes blockchain</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#lightningNetwork -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#lightningNetwork">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Infraestructura_y_procesos"/>
+        <rdfs:comment>Permite pagos rapidos y baratos usando canales fuera del  blockchain principal</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#liquidez -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#liquidez">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Mercado"/>
+        <rdfs:comment>Es la facilidad de comprar o vender un activo sin cambiar mucho su precio</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#liquidityPool -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#liquidityPool">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Finanzas_descentralizadas"/>
+        <rdfs:comment>Depositas ETH+USDC en Uniswap para que otros tradeen.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#mineria -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#mineria">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Infraestructura_y_procesos"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Proceso"/>
+        <untitled-ontology-4:complejidadComputacional rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">9</untitled-ontology-4:complejidadComputacional>
+        <untitled-ontology-4:fechaImplementacion rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2009-01-03T00:00:00</untitled-ontology-4:fechaImplementacion>
+        <untitled-ontology-4:nombreProc>Mineria</untitled-ontology-4:nombreProc>
+        <untitled-ontology-4:tiempoEjecucion rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">600</untitled-ontology-4:tiempoEjecucion>
+        <untitled-ontology-4:tipoValidacion>bloques</untitled-ontology-4:tipoValidacion>
+        <rdfs:comment>proceso de validar transacciones</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#minero -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#minero">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Actores_del_ecosistema"/>
+        <rdfs:comment>Persona/empresa con equipos ASIC minando Bitcoin.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#nft -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#nft">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Token"/>
+        <untitled-ontology-4:estandar>ERC-721</untitled-ontology-4:estandar>
+        <untitled-ontology-4:simboloToken>NFT</untitled-ontology-4:simboloToken>
+        <untitled-ontology-4:tipoToken>no fungible</untitled-ontology-4:tipoToken>
+        <rdfs:comment>Token unico no fungible</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#nodoCompleto -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#nodoCompleto">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Blockchain"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Nodo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
+        <rdfs:comment>Computadora con los 500GB completos del blockchain Bitcoin.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#nodoLuz -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#nodoLuz">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Blockchain"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Nodo"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
+        <rdfs:comment>App móvil que solo verifica tus transacciones, no todo el blockchain.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#proofOfStake -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#proofOfStake">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Infraestructura_y_procesos"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#MecanismoConsenso"/>
+        <untitled-ontology-4:algoritmoConsenso>PoS</untitled-ontology-4:algoritmoConsenso>
+        <untitled-ontology-4:consumoEnergeticoEstimado rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.1</untitled-ontology-4:consumoEnergeticoEstimado>
+        <untitled-ontology-4:nombreConsenso>Proof of Stake</untitled-ontology-4:nombreConsenso>
+        <untitled-ontology-4:redQueUsa>Ethereum 2.0, Cardano, Polkadot, Solana</untitled-ontology-4:redQueUsa>
+        <untitled-ontology-4:seguridadContraAtaques>Resistente a Sybil, vulnerable a Nothing-at-Stake</untitled-ontology-4:seguridadContraAtaques>
+        <untitled-ontology-4:tiempoBloquePromedio rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">12</untitled-ontology-4:tiempoBloquePromedio>
+        <rdfs:comment>Ethereum actual - bloqueas 32 ETH para validar y ganar recompensas.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#proofOfWork -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#proofOfWork">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Infraestructura_y_procesos"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#MecanismoConsenso"/>
+        <untitled-ontology-4:algoritmoConsenso>PoW</untitled-ontology-4:algoritmoConsenso>
+        <untitled-ontology-4:consumoEnergetico rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100.5</untitled-ontology-4:consumoEnergetico>
+        <untitled-ontology-4:nombreConsenso>Proof of Work</untitled-ontology-4:nombreConsenso>
+        <untitled-ontology-4:redQueUsa>Bitcoin, Litecoin, Ethereum 1.0</untitled-ontology-4:redQueUsa>
+        <untitled-ontology-4:seguridadContraAtaques>Resistente a 51%</untitled-ontology-4:seguridadContraAtaques>
+        <untitled-ontology-4:tiempoBloquePromedio rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">600</untitled-ontology-4:tiempoBloquePromedio>
+        <rdfs:comment>Bitcoin - usas electricidad y hardware para minar.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#pumpAndDumb -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#pumpAndDumb">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Estafa"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Riesgos_y_seguridad"/>
+        <untitled-ontology-4:intencionalidad>maliciosa</untitled-ontology-4:intencionalidad>
+        <untitled-ontology-4:montoRobado rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50000000.0</untitled-ontology-4:montoRobado>
+        <untitled-ontology-4:tipoEstafa>Pump and Dump</untitled-ontology-4:tipoEstafa>
+        <rdfs:comment>Grupo en Telegram infla precio de token y vende dejándote perdiendo.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#remesasConCriptomonedas -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#remesasConCriptomonedas">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Finanzas_descentralizadas"/>
+        <rdfs:comment>Permiten transferir dinero internacionalmente rápido y barato, sin bancos, usando criptomonedas que el receptor puede cambiar a su moneda local</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#rugpull -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#rugpull">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Ataque"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Riesgos_y_seguridad"/>
+        <untitled-ontology-4:complejidadEjecución>media</untitled-ontology-4:complejidadEjecución>
+        <untitled-ontology-4:impactoEconomico>sectorial</untitled-ontology-4:impactoEconomico>
+        <untitled-ontology-4:intencionMaliciosa>robo</untitled-ontology-4:intencionMaliciosa>
+        <untitled-ontology-4:jurisdiccionLegal>Actividad ilegal</untitled-ontology-4:jurisdiccionLegal>
+        <untitled-ontology-4:nivelSofisticación>profesional</untitled-ontology-4:nivelSofisticación>
+        <rdfs:comment>Estafa donde roban liquidez</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#seguridadBilletera -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#seguridadBilletera">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Riesgos_y_seguridad"/>
+        <rdfs:comment>Más seguro: el usuario controla sus llaves privadas y evita riesgos de hackeos o quiebras, pero debe protegerlas por su cuenta.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#seguridadExchange -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#seguridadExchange">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Riesgos_y_seguridad"/>
+        <rdfs:comment>Menos seguro, pero más práctico: el exchange guarda las claves, facilitando el uso, aunque hay riesgo si es hackeado.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#solana -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#solana">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Altcoin"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
+        <untitled-ontology-4:proyectoAsociado>Blockchain de alta velocidad</untitled-ontology-4:proyectoAsociado>
+        <untitled-ontology-4:tieneInnovacion rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</untitled-ontology-4:tieneInnovacion>
+        <untitled-ontology-4:volatilidadCripto>Alta</untitled-ontology-4:volatilidadCripto>
+        <rdfs:comment>SOL, cripto rápida y barata para transacciones.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#stablecoinAlgorítmico -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#stablecoinAlgorítmico">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Stablecoin"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
+        <untitled-ontology-4:activoDeReferencia>Dólar estadounidense (USD)</untitled-ontology-4:activoDeReferencia>
+        <untitled-ontology-4:macanismoEstabilizacion>Algoritmo de expansión y contracción monetaria</untitled-ontology-4:macanismoEstabilizacion>
+        <rdfs:comment>UST/Terra - quemaba LUNA para mantener precio $1 (colapsó).</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#stablecoinRespaldado -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#stablecoinRespaldado">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Stablecoin"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
+        <untitled-ontology-4:activoDeReferencia>Dólar estadounidense (USD)</untitled-ontology-4:activoDeReferencia>
+        <untitled-ontology-4:macanismoEstabilizacion>Respaldo con activos colaterales</untitled-ontology-4:macanismoEstabilizacion>
+        <rdfs:comment>USDT/USDC - siempre vale $1 porque hay dólares reales en banco.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#staking -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#staking">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Infraestructura_y_procesos"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Proceso"/>
+        <untitled-ontology-4:complejidadComputacional rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3</untitled-ontology-4:complejidadComputacional>
+        <untitled-ontology-4:descripcion>Proceso de bloquear criptomonedas para participar en la validación de transacciones y mantenimiento de la red en protocolos Proof of Stake</untitled-ontology-4:descripcion>
+        <untitled-ontology-4:fechaImplementacion rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2012-08-19T00:00:00</untitled-ontology-4:fechaImplementacion>
+        <untitled-ontology-4:tiempoEjecucion rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.5</untitled-ontology-4:tiempoEjecucion>
+        <untitled-ontology-4:tipoValidacion>consenso</untitled-ontology-4:tipoValidacion>
+        <rdfs:comment>Bloqueas 10 ETH en Lido, ganas 4% anual en más ETH.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tokenGobernanza -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tokenGobernanza">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Token"/>
+        <untitled-ontology-4:estandar>ERC-20</untitled-ontology-4:estandar>
+        <untitled-ontology-4:simboloToken>GOV</untitled-ontology-4:simboloToken>
+        <untitled-ontology-4:tipoToken>fungible</untitled-ontology-4:tipoToken>
+        <rdfs:comment>UNI - votas cambios en Uniswap según cuántos tokens tengas.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tokenSeguridad -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tokenSeguridad">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Token"/>
+        <untitled-ontology-4:estandar>ERC-20</untitled-ontology-4:estandar>
+        <untitled-ontology-4:tipoToken>fungible</untitled-ontology-4:tipoToken>
+        <rdfs:comment>Token que promete dividendos o ganancias de inversión.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tokenUtilidad -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tokenUtilidad">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Token"/>
+        <untitled-ontology-4:estandar>ERC-20</untitled-ontology-4:estandar>
+        <untitled-ontology-4:tipoToken>fungible</untitled-ontology-4:tipoToken>
+        <rdfs:comment>BNB - usas para pagar fees en Binance más baratos.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tokenizacionActivo -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tokenizacionActivo">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Finanzas_descentralizadas"/>
+        <rdfs:comment>Convertir archivos en tokens digitales</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tradingPair -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#tradingPair">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Mercado"/>
+        <untitled-ontology-4:volatilidad rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">6</untitled-ontology-4:volatilidad>
+        <untitled-ontology-4:volumenTransacciones rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2500000000.0</untitled-ontology-4:volumenTransacciones>
+        <rdfs:comment>ETH/USDT - cambias Ethereum por Tether.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#trilemaEscalabilidad -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#trilemaEscalabilidad">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Infraestructura_y_procesos"/>
+        <rdfs:comment>Es el reto de equilibrar descentralización, seguridad y escalabilidad, ya que mejorar dos suele implicar sacrificar la tercera.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#usuario -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#usuario">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Actores_del_ecosistema"/>
+        <rdfs:comment>Guarda y utliza criptos</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#whitepaper -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#whitepaper">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Infraestructura_y_procesos"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Proceso"/>
+        <rdfs:comment>Documento técnico con la tecnología y objetivos de un proyecto de criptomoneda.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#yieldFarming -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#yieldFarming">
+        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Finanzas_descentralizadas"/>
+        <rdfs:comment>Prestas USDC en Aave, ganas 5% anual + tokens AAVE gratis.</rdfs:comment>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Actores_del_ecosistema"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Finanzas_descentralizadas"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Infraestructura_y_procesos"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Mercado"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Riesgos_y_seguridad"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Ataque"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Custodia"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Estafa"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Blockchain"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Criptomoneda"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Token"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+
