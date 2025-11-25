@@ -197,8 +197,20 @@ elif tipo_busqueda == "📂 Búsqueda por clase":
     if buscar_clase_btn and clase_seleccionada:
         with st.spinner(f"Buscando instancias de {clase_seleccionada}..."):
             try:
-                clase = onto[clase_seleccionada]
-                instancias = list(clase.instances())
+                clase = onto.search_one(iri=f"*{clase_seleccionada}")
+                if clase is None:
+                    clase = onto.search_one(label=clase_seleccionada)
+                if clase is None:
+                    for c in onto.classes():
+                        if c.name == clase_seleccionada:
+                            clase = c
+                            break
+
+                if clase:
+                    instancias = list(clase.instances())
+                else:
+                    st.error(f"No se pudo encontrar la clase '{clase_seleccionada}'")
+                    instancias = []
                 
                 if instancias:
                     st.success(f"✅ Se encontraron **{len(instancias)}** instancias de la clase '{clase_seleccionada}':")
