@@ -1,6 +1,7 @@
 import streamlit as st
 from owlready2 import *
 import os
+from dbpedia_connector import DBpediaConnector, DBpediaOffline
 
 # ==================== CONFIGURACIÓN ====================
 st.set_page_config(
@@ -27,13 +28,37 @@ st.markdown("""
         border-radius: 0.5rem;
         margin: 0.5rem 0;
     }
+    .dbpedia-box {
+        background-color: #e8f4f8;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin: 1rem 0;
+        border-left: 4px solid #1f77b4;
+    }
     </style>
 """, unsafe_allow_html=True)
 
 # ==================== TÍTULO ====================
 st.title("🔍 Buscador Semántico de Criptomonedas")
-st.markdown("### Ontología OWL - Web Semántica")
+st.markdown("### Ontología OWL + DBpedia - Web Semántica")
 st.markdown("---")
+
+# ==================== INICIALIZAR CONECTORES ====================
+@st.cache_resource
+def inicializar_dbpedia():
+    """Inicializa el conector de DBpedia"""
+    return DBpediaConnector()
+
+@st.cache_resource
+def inicializar_cache():
+    """Inicializa el cache offline"""
+    return DBpediaOffline()
+
+dbpedia = inicializar_dbpedia()
+cache_offline = inicializar_cache()
+
+# Verificar conexión
+conexion_online = dbpedia.is_online()
 
 # ==================== FUNCIONES ====================
 
@@ -47,7 +72,7 @@ def cargar_ontologia(archivo):
     except Exception as e:
         return None, str(e)
 
-def mostrar_info_individuo(individuo):
+def mostrar_info_individuo(individuo, enriquecer_dbpedia=False):
     """Mostrar información detallada de un individuo"""
     st.markdown(f"### 📄 {individuo.name}")
     
@@ -56,33 +81,100 @@ def mostrar_info_individuo(individuo):
     if tipos:
         st.write(f"**🏷️ Tipo:** {', '.join(tipos)}")
     
-    # Mostrar propiedades
+    # Mostrar propiedades locales
     propiedades_encontradas = False
     for prop in individuo.get_properties():
         valores = prop[individuo]
         if valores:
             propiedades_encontradas = True
-            # Formatear valores
             if isinstance(valores, list):
                 valores_str = ", ".join([str(v) for v in valores])
             else:
                 valores_str = str(valores)
-            
             st.write(f"**{prop.name}:** {valores_str}")
     
     if not propiedades_encontradas:
-        st.info("No hay propiedades adicionales definidas")
+        st.info("No hay propiedades adicionales definidas en la ontología local")
+    
+    # Enriquecer con DBpedia si está habilitado
+    if enriquecer_dbpedia:
+        with st.expander("🌐 Información adicional de DBpedia", expanded=False):
+            mostrar_info_dbpedia(individuo.name)
     
     st.markdown("---")
 
+def mostrar_info_dbpedia(nombre_cripto):
+    """Muestra información enriquecida desde DBpedia"""
+    
+    if conexion_online:
+        with st.spinner(f"🔍 Buscando '{nombre_cripto}' en DBpedia..."):
+            # Intentar con API REST primero (más rápida)
+            resultados = dbpedia.buscar_con_api_rest(nombre_cripto)
+            
+            if resultados:
+                datos = resultados[0]  # Tomar el primer resultado
+                
+                # Guardar en cache
+                cache_offline.agregar_al_cache(nombre_cripto, datos)
+                
+                st.markdown('<div class="dbpedia-box">', unsafe_allow_html=True)
+                st.markdown("**🔗 Fuente:** DBpedia (Online - API REST)")
+                
+                st.write(f"**{datos.get('label', nombre_cripto)}**")
+                
+                if datos.get("abstract"):
+                    st.write("**Descripción:**")
+                    st.write(datos["abstract"])
+                
+                if datos.get("categories"):
+                    st.write(f"**📂 Categorías:** {', '.join(datos['categories'])}")
+                
+                if datos.get("uri"):
+                    st.markdown(f"[🔗 Ver más en DBpedia]({datos['uri']})")
+                
+                st.markdown('</div>', unsafe_allow_html=True)
+            else:
+                st.info("ℹ️ No se encontró información adicional en DBpedia")
+    else:
+        # Modo offline: buscar en cache
+        st.info("🔌 Modo Offline: Buscando en cache local...")
+        datos_cache = cache_offline.obtener_del_cache(nombre_cripto)
+        
+        if datos_cache:
+            st.markdown('<div class="dbpedia-box">', unsafe_allow_html=True)
+            st.markdown("**💾 Fuente:** Cache Local (Offline)")
+            
+            st.write(f"**{datos_cache.get('label', nombre_cripto)}**")
+            
+            if datos_cache.get("abstract"):
+                st.write("**Descripción:**")
+                st.write(datos_cache["abstract"])
+            
+            st.markdown('</div>', unsafe_allow_html=True)
+        else:
+            st.info("ℹ️ Sin datos en cache para este término")
+
 # ==================== SIDEBAR ====================
 st.sidebar.header("⚙️ Configuración")
+
+# Estado de conexión
+if conexion_online:
+    st.sidebar.success("✅ Conectado a DBpedia")
+else:
+    st.sidebar.warning("🔌 Modo Offline (Sin conexión)")
 
 # Cargar ontología
 archivo_owl = st.sidebar.text_input(
     "📁 Archivo OWL:", 
     value="criptomonedas.owl",
     help="Nombre del archivo OWL en la carpeta del proyecto"
+)
+
+# Opción para enriquecer con DBpedia
+enriquecer = st.sidebar.checkbox(
+    "🌐 Enriquecer con DBpedia",
+    value=True,
+    help="Agrega información de DBpedia a los resultados"
 )
 
 # Botón para recargar
@@ -124,13 +216,42 @@ st.sidebar.info("""
 **Tipos de búsqueda:**
 - **Por nombre:** Busca individuos que contengan el término
 - **Por clase:** Lista todos los individuos de una clase específica
+- **DBpedia:** Búsqueda extendida en DBpedia
 - **Explorar:** Navega por toda la ontología
+
+**Nota:** Con conexión a internet, los resultados se enriquecen automáticamente con DBpedia.
+
+**Términos sugeridos para DBpedia:**
+- Bitcoin
+- Ethereum  
+- Blockchain
+- Cryptocurrency
+- Smart contract
 """)
+
+# Test de conexión
+if st.sidebar.button("🧪 Probar DBpedia"):
+    with st.sidebar:
+        with st.spinner("Probando API REST..."):
+            test_results = dbpedia.buscar_con_api_rest("Bitcoin")
+            if test_results:
+                st.success(f"✅ API REST: {len(test_results)} resultados")
+                st.write(f"Encontrado: {test_results[0].get('label', 'N/A')}")
+            else:
+                st.warning("⚠️ API REST no responde")
+                
+                # Intentar SPARQL como fallback
+                with st.spinner("Probando SPARQL..."):
+                    test_sparql = dbpedia.buscar_simple("Bitcoin")
+                    if test_sparql:
+                        st.success(f"✅ SPARQL: {len(test_sparql)} resultados")
+                    else:
+                        st.error("❌ Ambos métodos fallaron")
 
 # ==================== TIPO DE BÚSQUEDA ====================
 tipo_busqueda = st.radio(
     "🔎 Selecciona el tipo de búsqueda:",
-    ["🔤 Búsqueda por nombre", "📂 Búsqueda por clase", "🗂️ Explorar ontología"],
+    ["🔤 Búsqueda por nombre", "📂 Búsqueda por clase", "🌐 Búsqueda en DBpedia", "🗂️ Explorar ontología"],
     horizontal=True
 )
 
@@ -148,8 +269,8 @@ if tipo_busqueda == "🔤 Búsqueda por nombre":
             key="busqueda_nombre"
         )
     with col2:
-        st.write("")  # Espaciador
-        st.write("")  # Espaciador
+        st.write("")
+        st.write("")
         buscar_btn = st.button("🔍 Buscar", type="primary", use_container_width=True)
     
     if buscar_btn and termino:
@@ -163,19 +284,16 @@ if tipo_busqueda == "🔤 Búsqueda por nombre":
                 st.success(f"✅ Se encontraron **{len(encontrados)}** resultados para '{termino}':")
                 st.markdown("---")
                 
-                # Mostrar resultados en columnas
                 for ind in encontrados:
                     with st.container():
-                        mostrar_info_individuo(ind)
+                        mostrar_info_individuo(ind, enriquecer_dbpedia=enriquecer)
             else:
                 st.warning(f"⚠️ No se encontraron resultados para '{termino}'")
-                st.info("💡 Intenta con otro término o explora la ontología para ver qué hay disponible")
 
 # ==================== BÚSQUEDA POR CLASE ====================
 elif tipo_busqueda == "📂 Búsqueda por clase":
     st.subheader("📂 Búsqueda por clase")
     
-    # Obtener lista de clases
     clases = sorted([cls.name for cls in onto.classes() if hasattr(cls, 'name')])
     
     if not clases:
@@ -199,8 +317,6 @@ elif tipo_busqueda == "📂 Búsqueda por clase":
             try:
                 clase = onto.search_one(iri=f"*{clase_seleccionada}")
                 if clase is None:
-                    clase = onto.search_one(label=clase_seleccionada)
-                if clase is None:
                     for c in onto.classes():
                         if c.name == clase_seleccionada:
                             clase = c
@@ -209,39 +325,112 @@ elif tipo_busqueda == "📂 Búsqueda por clase":
                 if clase:
                     instancias = list(clase.instances())
                 else:
-                    st.error(f"No se pudo encontrar la clase '{clase_seleccionada}'")
                     instancias = []
                 
                 if instancias:
                     st.success(f"✅ Se encontraron **{len(instancias)}** instancias de la clase '{clase_seleccionada}':")
                     st.markdown("---")
                     
-                    # Mostrar en columnas si hay muchas
-                    if len(instancias) > 3:
-                        cols = st.columns(2)
-                        for idx, inst in enumerate(instancias):
-                            with cols[idx % 2]:
-                                with st.container():
-                                    mostrar_info_individuo(inst)
-                    else:
-                        for inst in instancias:
-                            mostrar_info_individuo(inst)
+                    for inst in instancias:
+                        mostrar_info_individuo(inst, enriquecer_dbpedia=enriquecer)
                 else:
                     st.info(f"ℹ️ No hay instancias definidas para la clase '{clase_seleccionada}'")
-                    st.markdown("""
-                    **Esto puede significar:**
-                    - La clase existe pero aún no tiene individuos
-                    - Necesitas poblar tu ontología con más datos
-                    """)
             
             except Exception as e:
                 st.error(f"❌ Error al buscar instancias: {e}")
 
+# ==================== BÚSQUEDA EN DBPEDIA ====================
+elif tipo_busqueda == "🌐 Búsqueda en DBpedia":
+    st.subheader("🌐 Búsqueda en DBpedia")
+    
+    if not conexion_online:
+        st.warning("⚠️ Sin conexión a internet. Mostrando resultados del cache local.")
+    
+    col1, col2 = st.columns([3, 1])
+    with col1:
+        termino_dbpedia = st.text_input(
+            "Buscar en DBpedia:",
+            placeholder="Ejemplo: Ethereum, Smart Contract, DeFi...",
+            key="busqueda_dbpedia"
+        )
+    with col2:
+        st.write("")
+        st.write("")
+        buscar_dbpedia_btn = st.button("🌐 Buscar", type="primary", use_container_width=True)
+    
+    if buscar_dbpedia_btn and termino_dbpedia:
+        if conexion_online:
+            with st.spinner("🔍 Consultando DBpedia..."):
+                # PRIMERO intentar con API REST (más rápida)
+                st.info("🚀 Usando DBpedia Lookup API...")
+                resultados_api = dbpedia.buscar_con_api_rest(termino_dbpedia)
+                
+                if resultados_api:
+                    st.success(f"✅ Se encontraron {len(resultados_api)} resultados para '{termino_dbpedia}'")
+                    
+                    # Mostrar primer resultado destacado
+                    st.markdown("### 📌 Resultado Principal")
+                    principal = resultados_api[0]
+                    
+                    st.markdown(f"**{principal.get('label', 'Sin título')}**")
+                    st.write(principal.get('abstract', 'Sin descripción'))
+                    
+                    if principal.get('categories'):
+                        st.write(f"**📂 Categorías:** {', '.join(principal['categories'])}")
+                    
+                    if principal.get('uri'):
+                        st.markdown(f"[🔗 Ver en DBpedia]({principal['uri']})")
+                    
+                    # Guardar en cache
+                    cache_offline.agregar_al_cache(termino_dbpedia, principal)
+                    
+                    # Mostrar otros resultados
+                    if len(resultados_api) > 1:
+                        st.markdown("---")
+                        st.markdown("### 🔗 Otros Resultados Relacionados")
+                        
+                        for idx, resultado in enumerate(resultados_api[1:6], 1):
+                            with st.expander(f"#{idx} - {resultado.get('label', 'Sin título')}"):
+                                st.write(resultado.get('abstract', 'Sin descripción'))
+                                if resultado.get('categories'):
+                                    st.write(f"**Categorías:** {', '.join(resultado['categories'])}")
+                                if resultado.get('uri'):
+                                    st.markdown(f"[🔗 Ver en DBpedia]({resultado['uri']})")
+                
+                else:
+                    # Si API REST falla, intentar SPARQL
+                    st.info("🔄 Intentando con consulta SPARQL...")
+                    resultados_sparql = dbpedia.buscar_simple(termino_dbpedia)
+                    
+                    if resultados_sparql:
+                        st.success(f"✅ Se encontraron {len(resultados_sparql)} resultados")
+                        
+                        for idx, resultado in enumerate(resultados_sparql, 1):
+                            with st.expander(f"#{idx} - {resultado.get('label', 'Sin título')}"):
+                                st.write(resultado.get('abstract', 'Sin descripción'))
+                                if resultado.get('uri'):
+                                    st.markdown(f"[🔗 Ver en DBpedia]({resultado['uri']})")
+                    else:
+                        st.warning(f"⚠️ No se encontró información para '{termino_dbpedia}' en DBpedia")
+                        st.info("💡 Intenta con términos en inglés como: Bitcoin, Ethereum, Blockchain, Cryptocurrency")
+        else:
+            # Modo offline
+            resultados_cache = cache_offline.buscar_en_cache(termino_dbpedia)
+            
+            if resultados_cache:
+                st.info(f"💾 Mostrando {len(resultados_cache)} resultados del cache local")
+                
+                for datos in resultados_cache:
+                    st.markdown("---")
+                    st.markdown(f"**{datos.get('label', 'Sin título')}**")
+                    st.write(datos.get("abstract", "")[:300] + "...")
+            else:
+                st.warning("⚠️ Sin conexión y sin datos en cache para este término")
+
 # ==================== EXPLORAR ONTOLOGÍA ====================
-else:  # Explorar ontología
+else:
     st.subheader("🗂️ Explorar ontología completa")
     
-    # Tabs para organizar
     tab1, tab2, tab3 = st.tabs(["📚 Clases", "🔗 Propiedades", "📄 Todos los individuos"])
     
     with tab1:
@@ -249,7 +438,6 @@ else:  # Explorar ontología
         clases = sorted([cls.name for cls in onto.classes() if hasattr(cls, 'name')])
         
         if clases:
-            # Mostrar en columnas
             cols = st.columns(3)
             for idx, cls_name in enumerate(clases):
                 with cols[idx % 3]:
@@ -288,7 +476,6 @@ else:  # Explorar ontología
         if individuos:
             st.info(f"Total de individuos: {len(individuos)}")
             
-            # Búsqueda rápida dentro de individuos
             filtro = st.text_input("🔍 Filtrar individuos:", placeholder="Escribe para filtrar...")
             
             individuos_filtrados = individuos
@@ -296,35 +483,18 @@ else:  # Explorar ontología
                 individuos_filtrados = [ind for ind in individuos if filtro.lower() in ind.name.lower()]
             
             if individuos_filtrados:
-                # Mostrar en columnas
-                if len(individuos_filtrados) > 4:
-                    cols = st.columns(2)
-                    for idx, ind in enumerate(sorted(individuos_filtrados, key=lambda x: x.name)):
-                        with cols[idx % 2]:
-                            with st.container():
-                                mostrar_info_individuo(ind)
-                else:
-                    for ind in sorted(individuos_filtrados, key=lambda x: x.name):
-                        mostrar_info_individuo(ind)
+                for ind in sorted(individuos_filtrados, key=lambda x: x.name):
+                    mostrar_info_individuo(ind, enriquecer_dbpedia=enriquecer)
             else:
                 st.warning("No se encontraron individuos con ese filtro")
         else:
             st.warning("⚠️ No hay individuos en la ontología")
-            st.markdown("""
-            ### ¿Qué hacer?
-            
-            Tu ontología tiene clases pero no tiene instancias (individuos). Para poblarla:
-            
-            1. **Opción 1:** Agregar individuos manualmente en Protégé
-            2. **Opción 2:** Importar datos desde DBpedia
-            3. **Opción 3:** Usar scripts para generar instancias automáticamente
-            """)
 
 # ==================== FOOTER ====================
 st.markdown("---")
 st.markdown("""
 <div style='text-align: center; color: gray; padding: 2rem;'>
     <p>🎓 Proyecto de Web Semántica - Buscador Semántico de Criptomonedas</p>
-    <p>Desarrollado con Streamlit y Owlready2</p>
+    <p>Desarrollado con Streamlit, Owlready2 y DBpedia</p>
 </div>
 """, unsafe_allow_html=True)

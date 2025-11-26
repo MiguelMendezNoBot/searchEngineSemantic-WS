@@ -1,0 +1,72 @@
+{
+  "Bitcoin": {
+    "uri": "http://dbpedia.org/resource/Bitcoin",
+    "label": "<B>Bitcoin</B>",
+    "abstract": "<B>Bitcoin</B> (₿) is a cryptocurrency. It is a decentralized digital currency without a central bank or...",
+    "categories": [
+      "http://dbpedia.org/resource/Category:2009_software",
+      "http://dbpedia.org/resource/Category:Application_layer_protocols",
+      "http://dbpedia.org/resource/Category:Bitcoin"
+    ]
+  },
+  "bitcoin": {
+    "uri": "http://dbpedia.org/resource/Bitcoin",
+    "label": "<B>Bitcoin</B>",
+    "abstract": "<B>Bitcoin</B> (₿) is a cryptocurrency. It is a decentralized digital currency without a central bank or...",
+    "categories": [
+      "http://dbpedia.org/resource/Category:2009_software",
+      "http://dbpedia.org/resource/Category:Application_layer_protocols",
+      "http://dbpedia.org/resource/Category:Bitcoin"
+    ]
+  },
+  "bitcoinCash": {
+    "uri": "http://dbpedia.org/resource/Bitcoin_Cash",
+    "label": "Bitcoin Cash",
+    "abstract": "Bitcoin Cash is a cryptocurrency that is a fork of Bitcoin. Bitcoin Cash is a spin-off or altcoin that was created in 2017. In 2018 Bitcoin Cash subsequently split into two cryptocurrencies: Bitcoin Cash, and Bitcoin SV. Bitcoin Cash is sometimes also referred to as Bcash....",
+    "categories": [
+      "http://dbpedia.org/resource/Category:2017_establishments",
+      "http://dbpedia.org/resource/Category:Bitcoin_clients",
+      "http://dbpedia.org/resource/Category:Cryptocurrency_projects"
+    ]
+  },
+  "ethereum": {
+    "uri": "http://dbpedia.org/resource/Ethereum",
+    "label": "<B>Ethereum</B>",
+    "abstract": "<B>Ethereum</B> is an open source, public, blockchain-based distributed computing platform and operating...",
+    "categories": [
+      "http://dbpedia.org/resource/Category:2015_software",
+      "http://dbpedia.org/resource/Category:Blockchains",
+      "http://dbpedia.org/resource/Category:Bytecodes"
+    ]
+  },
+  "DeFi": {
+    "uri": "http://dbpedia.org/resource/Def_Jam_Recordings",
+    "label": "<B>Def</B> Jam Recordings",
+    "abstract": "<B>Def</B> Jam Recordings is an American record label focused predominantly on hip hop, pop, and urban...",
+    "categories": [
+      "http://dbpedia.org/resource/Category:American_hip_hop_record_labels",
+      "http://dbpedia.org/resource/Category:American_record_labels",
+      "http://dbpedia.org/resource/Category:Companies_based_in_New_York_City"
+    ]
+  },
+  "Smart Contract": {
+    "uri": "http://dbpedia.org/resource/Smart_contract",
+    "label": "<B>Smart</B> <B>contract</B>",
+    "abstract": " negotiation or performance of a <B>contract</B>. <B>Smart</B> <B>contracts</B> allow the performance of credible...",
+    "categories": [
+      "http://dbpedia.org/resource/Category:Blockchains",
+      "http://dbpedia.org/resource/Category:Computer_law",
+      "http://dbpedia.org/resource/Category:Contract_law"
+    ]
+  },
+  "solana": {
+    "uri": "http://dbpedia.org/resource/Javier_Solana",
+    "label": "Javier <B>Solana</B>",
+    "abstract": "Francisco Javier <B>Solana</B> de Madariaga (Spanish: [fɾanˈθisko xaˈβjeɾ <B>soˈlana</B> ðe maðaˈɾjaɣa]; born 14...",
+    "categories": [
+      "http://dbpedia.org/resource/Category:1942_births",
+      "http://dbpedia.org/resource/Category:Center_on_International_Cooperation",
+      "http://dbpedia.org/resource/Category:Commander's_Crosses_of_the_Order_of_the_Lithuanian_Grand_Duke_Gediminas"
+    ]
+  }
+}
