@@ -296,57 +296,6 @@ def mostrar_info_dbpedia(entidad, onto=None, archivo_owl=None):
 
     st.markdown("---")
 
-def mostrar_info_dbpedia(nombre_cripto):
-    """Muestra información enriquecida desde DBpedia"""
-    
-    if conexion_online:
-        with st.spinner(f"🔍 Buscando '{nombre_cripto}' en DBpedia..."):
-            # Intentar con API REST primero (más rápida)
-            resultados = dbpedia.buscar_con_api_rest(nombre_cripto)
-            
-            if resultados:
-                datos = resultados[0]  # Tomar el primer resultado
-                
-                # Guardar en cache
-                cache_offline.agregar_al_cache(nombre_cripto, datos)
-                
-                st.markdown('<div class="dbpedia-box">', unsafe_allow_html=True)
-                st.markdown("**🔗 Fuente:** DBpedia (Online - API REST)")
-                
-                st.write(f"**{datos.get('label', nombre_cripto)}**")
-                
-                if datos.get("abstract"):
-                    st.write("**Descripción:**")
-                    st.write(datos["abstract"])
-                
-                if datos.get("categories"):
-                    st.write(f"**📂 Categorías:** {', '.join(datos['categories'])}")
-                
-                if datos.get("uri"):
-                    st.markdown(f"[🔗 Ver más en DBpedia]({datos['uri']})")
-                
-                st.markdown('</div>', unsafe_allow_html=True)
-            else:
-                st.info("ℹ️ No se encontró información adicional en DBpedia")
-    else:
-        # Modo offline: buscar en cache
-        st.info("🔌 Modo Offline: Buscando en cache local...")
-        datos_cache = cache_offline.obtener_del_cache(nombre_cripto)
-        
-        if datos_cache:
-            st.markdown('<div class="dbpedia-box">', unsafe_allow_html=True)
-            st.markdown("**💾 Fuente:** Cache Local (Offline)")
-            
-            st.write(f"**{datos_cache.get('label', nombre_cripto)}**")
-            
-            if datos_cache.get("abstract"):
-                st.write("**Descripción:**")
-                st.write(datos_cache["abstract"])
-            
-            st.markdown('</div>', unsafe_allow_html=True)
-        else:
-            st.info("ℹ️ Sin datos en cache para este término")
-
 # ==================== SIDEBAR ====================
 st.sidebar.header("⚙️ Configuración")
 
