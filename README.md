@@ -4,7 +4,7 @@ Motor de búsqueda semántico basado en ontologías OWL para consultas sobre cri
 
 ## 📋 Descripción
 
-Este proyecto utiliza **Owlready2** para trabajar con ontologías y **Streamlit** para crear una interfaz web interactiva que permite realizar búsquedas semánticas sobre información de criptomonedas.
+Este proyecto utiliza **Owlready2** para trabajar con ontologías OWL locales y **SPARQLWrapper** para consultas a DBpedia, creando una interfaz web interactiva con **Streamlit** que permite realizar búsquedas semánticas híbridas sobre información de criptomonedas desde múltiples fuentes de datos.
 
 ## 🚀 Instalación y Configuración
 
@@ -111,11 +111,20 @@ searchEngineSemantic-WS/
 
 **Nota:** La carpeta `venv/` se crea localmente y no se sube al repositorio.
 
-## 🛠️ Tecnologías Utilizadas
+## ✨ Nuevas Características
+
+- **🔄 Búsqueda Híbrida**: Combina resultados de ontología local y DBpedia
+- **🌐 Integración con DBpedia**: Acceso a base de datos abierta de conocimiento
+- **📸 Imágenes y Metadatos**: Muestra thumbnails, fechas de fundación y descripciones
+- **🎯 Múltiples Modos de Búsqueda**: Local, DBpedia o híbrido
+- **🔍 Consultas SPARQL**: Búsquedas avanzadas en DBpedia
+
+## ️ Tecnologías Utilizadas
 
 - **Python 3.x** - Lenguaje de programación
 - **Streamlit** - Framework para la interfaz web interactiva
 - **Owlready2** - Librería para trabajar con ontologías OWL y razonamiento semántico
+- **SPARQLWrapper** - Cliente SPARQL para consultas a DBpedia
 
 ## 📦 Dependencias
 
@@ -124,6 +133,7 @@ Las dependencias se instalan automáticamente desde `requirements.txt`:
 ```
 streamlit
 owlready2
+SPARQLWrapper
 ```
 
 ## 👤 Autor
