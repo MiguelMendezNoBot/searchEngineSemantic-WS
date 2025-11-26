@@ -226,6 +226,7 @@
     </rdf:Description>
     
 
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -1137,6 +1138,7 @@
     </owl:DatatypeProperty>
     
 
+
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
@@ -1325,8 +1327,10 @@
         <rdfs:comment>Activo digital</rdfs:comment>
         <rdfs:seeAlso rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://dbpedia.org/resource/Token_(blockchain)</rdfs:seeAlso>
     </owl:Class>
+    
 
-  <!-- 
+
+    <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
     // Individuals
@@ -1882,259 +1886,7 @@
         <rdfs:comment>Prestas USDC en Aave, ganas 5% anual + tokens AAVE gratis.</rdfs:comment>
     </owl:NamedIndividual>
     
-    <!-- ================================================================== -->
-    <!-- NUEVAS INSTANCIAS AÑADIDAS (POBLAMIENTO EXTRA)                    -->
-    <!-- ================================================================== -->
 
-    <!-- ======================= BILLETERA DIGITAL ======================= -->
-
-    <!-- Billetera caliente (hot wallet) -->
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#billeteraCaliente">
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#BilleteraDigital"/>
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Custodia"/>
-        <untitled-ontology-4:soportaMultimoneda rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</untitled-ontology-4:soportaMultimoneda>
-        <untitled-ontology-4:nivelDeSeguridad>Media</untitled-ontology-4:nivelDeSeguridad>
-        <rdfs:comment>Billetera conectada a internet, práctica pero más expuesta a ataques.</rdfs:comment>
-    </owl:NamedIndividual>
-
-    <!-- MetaMask -->
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#billeteraMetaMask">
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#BilleteraDigital"/>
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Custodia"/>
-        <untitled-ontology-4:soportaMultimoneda rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</untitled-ontology-4:soportaMultimoneda>
-        <untitled-ontology-4:nivelDeSeguridad>Media</untitled-ontology-4:nivelDeSeguridad>
-        <untitled-ontology-4:marca>MetaMask</untitled-ontology-4:marca>
-        <untitled-ontology-4:estadoConexión>En línea</untitled-ontology-4:estadoConexión>
-        <rdfs:comment>Extensión y app móvil muy usada para interactuar con DeFi y dApps.</rdfs:comment>
-    </owl:NamedIndividual>
-
-    <!-- Billetera hardware (Ledger) -->
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#billeteraLedgerNano">
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#BilleteraDigital"/>
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Custodia"/>
-        <untitled-ontology-4:soportaMultimoneda rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</untitled-ontology-4:soportaMultimoneda>
-        <untitled-ontology-4:nivelDeSeguridad>Alta</untitled-ontology-4:nivelDeSeguridad>
-        <untitled-ontology-4:marca>Ledger Nano S</untitled-ontology-4:marca>
-        <untitled-ontology-4:estadoConexión>Sin conexión (offline)</untitled-ontology-4:estadoConexión>
-        <rdfs:comment>Dispositivo físico para guardar llaves privadas fuera de línea.</rdfs:comment>
-    </owl:NamedIndividual>
-
-    <!-- Billetera móvil -->
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#billeteraMovil">
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#BilleteraDigital"/>
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Custodia"/>
-        <untitled-ontology-4:soportaMultimoneda rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</untitled-ontology-4:soportaMultimoneda>
-        <untitled-ontology-4:nivelDeSeguridad>Media-Baja</untitled-ontology-4:nivelDeSeguridad>
-        <untitled-ontology-4:estadoConexión>En línea</untitled-ontology-4:estadoConexión>
-        <rdfs:comment>App de billetera en el celular, cómoda para pagos diarios.</rdfs:comment>
-    </owl:NamedIndividual>
-
-    <!-- ======================= CRIPTOMONEDA ======================= -->
-
-    <!-- Litecoin -->
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#litecoin">
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Criptomoneda"/>
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
-        <untitled-ontology-4:añoCreación rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2011-10-13T00:00:00</untitled-ontology-4:añoCreación>
-        <untitled-ontology-4:nivelDescentralización rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">7.0</untitled-ontology-4:nivelDescentralización>
-        <untitled-ontology-4:nombre>Litecoin</untitled-ontology-4:nombre>
-        <untitled-ontology-4:simbolo>LTC</untitled-ontology-4:simbolo>
-        <rdfs:comment>Criptomoneda basada en Bitcoin con bloques más rápidos.</rdfs:comment>
-    </owl:NamedIndividual>
-
-    <!-- Monero -->
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#monero">
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Criptomoneda"/>
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
-        <untitled-ontology-4:añoCreación rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-04-18T00:00:00</untitled-ontology-4:añoCreación>
-        <untitled-ontology-4:nivelDescentralización rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">8.0</untitled-ontology-4:nivelDescentralización>
-        <untitled-ontology-4:nombre>Monero</untitled-ontology-4:nombre>
-        <untitled-ontology-4:simbolo>XMR</untitled-ontology-4:simbolo>
-        <rdfs:comment>Criptomoneda centrada en privacidad y transacciones anónimas.</rdfs:comment>
-    </owl:NamedIndividual>
-
-    <!-- ======================= STABLECOIN ======================= -->
-
-    <!-- Stablecoin colateralizada en cripto (DAI) -->
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#stablecoinCriptoColateral">
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Stablecoin"/>
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
-        <untitled-ontology-4:activoDeReferencia>Dólar estadounidense (USD)</untitled-ontology-4:activoDeReferencia>
-        <untitled-ontology-4:macanismoEstabilizacion>Colateral sobrecolateralizado en criptomonedas (ej. DAI)</untitled-ontology-4:macanismoEstabilizacion>
-        <rdfs:comment>Stablecoin descentralizada respaldada por otras criptomonedas.</rdfs:comment>
-    </owl:NamedIndividual>
-
-    <!-- Stablecoin híbrida -->
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#stablecoinHibrida">
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Stablecoin"/>
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Tipos_de_criptomonedas"/>
-        <untitled-ontology-4:activoDeReferencia>Cesta de monedas fiat</untitled-ontology-4:activoDeReferencia>
-        <untitled-ontology-4:macanismoEstabilizacion>Mezcla de reservas fiat y algoritmos</untitled-ontology-4:macanismoEstabilizacion>
-        <rdfs:comment>Stablecoin que combina respaldo tradicional y mecanismos algorítmicos.</rdfs:comment>
-    </owl:NamedIndividual>
-
-    <!-- ======================= EXCHANGE ======================= -->
-
-    <!-- Binance (exchange centralizado) -->
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#binanceExchange">
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Exchange"/>
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Actores_del_ecosistema"/>
-        <untitled-ontology-4:blockchainBase>Múltiples redes (BSC, Ethereum, etc.)</untitled-ontology-4:blockchainBase>
-        <untitled-ontology-4:descentralización rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.5</untitled-ontology-4:descentralización>
-        <untitled-ontology-4:protocoloAsociado>Exchange centralizado (CEX)</untitled-ontology-4:protocoloAsociado>
-        <rdfs:comment>Uno de los exchanges centralizados más grandes por volumen.</rdfs:comment>
-    </owl:NamedIndividual>
-
-    <!-- Uniswap (exchange descentralizado) -->
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#uniswapDEX">
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Exchange"/>
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Actores_del_ecosistema"/>
-        <untitled-ontology-4:blockchainBase>Ethereum</untitled-ontology-4:blockchainBase>
-        <untitled-ontology-4:descentralización rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">4.5</untitled-ontology-4:descentralización>
-        <untitled-ontology-4:protocoloAsociado>AMM (Automated Market Maker)</untitled-ontology-4:protocoloAsociado>
-        <rdfs:comment>DEX icónico donde cualquiera puede crear pares de liquidez.</rdfs:comment>
-    </owl:NamedIndividual>
-
-    <!-- ======================= ATAQUE ======================= -->
-
-    <!-- Phishing en criptomonedas -->
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#ataquePhishingCripto">
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Ataque"/>
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Riesgos_y_seguridad"/>
-        <untitled-ontology-4:complejidadEjecución>baja</untitled-ontology-4:complejidadEjecución>
-        <untitled-ontology-4:impactoEconomico>variable</untitled-ontology-4:impactoEconomico>
-        <untitled-ontology-4:intencionMaliciosa>robo de claves privadas</untitled-ontology-4:intencionMaliciosa>
-        <untitled-ontology-4:nivelSofisticación>media</untitled-ontology-4:nivelSofisticación>
-        <rdfs:comment>Correos o webs falsas que imitan exchanges o billeteras para robar credenciales.</rdfs:comment>
-    </owl:NamedIndividual>
-
-    <!-- Exploit de contrato inteligente -->
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#ataqueExploitContrato">
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Ataque"/>
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Riesgos_y_seguridad"/>
-        <untitled-ontology-4:complejidadEjecución>alta</untitled-ontology-4:complejidadEjecución>
-        <untitled-ontology-4:impactoEconomico>masivo</untitled-ontology-4:impactoEconomico>
-        <untitled-ontology-4:intencionMaliciosa>robo y drenado de liquidez</untitled-ontology-4:intencionMaliciosa>
-        <untitled-ontology-4:nivelSofisticación>profesional</untitled-ontology-4:nivelSofisticación>
-        <rdfs:comment>Uso de vulnerabilidades en contratos DeFi para drenar fondos de un protocolo.</rdfs:comment>
-    </owl:NamedIndividual>
-
-    <!-- ======================= ESTAFA ======================= -->
-
-    <!-- Estafa de phishing (como tipo de estafa más general) -->
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#estafaPhishing">
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Estafa"/>
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Riesgos_y_seguridad"/>
-        <untitled-ontology-4:intencionalidad>maliciosa</untitled-ontology-4:intencionalidad>
-        <untitled-ontology-4:montoRobado rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">10000.0</untitled-ontology-4:montoRobado>
-        <untitled-ontology-4:tipoEstafa>Phishing</untitled-ontology-4:tipoEstafa>
-        <rdfs:comment>Se hace pasar por soporte o exchange para que la víctima entregue sus claves.</rdfs:comment>
-    </owl:NamedIndividual>
-
-    <!-- Esquema Ponzi cripto -->
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#estafaPonziCripto">
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Estafa"/>
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Riesgos_y_seguridad"/>
-        <untitled-ontology-4:intencionalidad>maliciosa</untitled-ontology-4:intencionalidad>
-        <untitled-ontology-4:montoRobado rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2500000.0</untitled-ontology-4:montoRobado>
-        <untitled-ontology-4:tipoEstafa>Ponzi</untitled-ontology-4:tipoEstafa>
-        <rdfs:comment>Promete rendimientos irreales pagados con el dinero de nuevos inversores.</rdfs:comment>
-    </owl:NamedIndividual>
-
-    <!-- Giveaway falso en redes -->
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#estafaGiveawayFalso">
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Estafa"/>
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Riesgos_y_seguridad"/>
-        <untitled-ontology-4:intencionalidad>maliciosa</untitled-ontology-4:intencionalidad>
-        <untitled-ontology-4:tipoEstafa>Giveaway falso</untitled-ontology-4:tipoEstafa>
-        <rdfs:comment>Publicaciones que prometen doblar tus criptos si primero envías una cantidad.</rdfs:comment>
-    </owl:NamedIndividual>
-
-    <!-- ======================= MECANISMO DE CONSENSO ======================= -->
-
-    <!-- Delegated Proof of Stake (DPoS) -->
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#delegatedProofOfStake">
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#MecanismoConsenso"/>
-        <untitled-ontology-4:algoritmoConsenso>DPoS</untitled-ontology-4:algoritmoConsenso>
-        <untitled-ontology-4:consumoEnergeticoEstimado rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.2</untitled-ontology-4:consumoEnergeticoEstimado>
-        <untitled-ontology-4:nombreConsenso>Delegated Proof of Stake</untitled-ontology-4:nombreConsenso>
-        <untitled-ontology-4:redQueUsa>EOS, TRON, algunas sidechains</untitled-ontology-4:redQueUsa>
-        <untitled-ontology-4:seguridadContraAtaques>Depende del número y honestidad de validadores delegados</untitled-ontology-4:seguridadContraAtaques>
-        <untitled-ontology-4:tiempoBloquePromedio rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">3</untitled-ontology-4:tiempoBloquePromedio>
-        <rdfs:comment>Los usuarios delegan su poder de voto en un conjunto reducido de validadores.</rdfs:comment>
-    </owl:NamedIndividual>
-
-    <!-- Proof of Authority (PoA) -->
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#proofOfAuthority">
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#MecanismoConsenso"/>
-        <untitled-ontology-4:algoritmoConsenso>PoA</untitled-ontology-4:algoritmoConsenso>
-        <untitled-ontology-4:consumoEnergeticoEstimado rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.05</untitled-ontology-4:consumoEnergeticoEstimado>
-        <untitled-ontology-4:nombreConsenso>Proof of Authority</untitled-ontology-4:nombreConsenso>
-        <untitled-ontology-4:redQueUsa>Redes privadas o de prueba</untitled-ontology-4:redQueUsa>
-        <untitled-ontology-4:seguridadContraAtaques>Basada en la reputación de validadores autorizados</untitled-ontology-4:seguridadContraAtaques>
-        <untitled-ontology-4:tiempoBloquePromedio rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5</untitled-ontology-4:tiempoBloquePromedio>
-        <rdfs:comment>Un conjunto pequeño de nodos autorizados valida los bloques.</rdfs:comment>
-    </owl:NamedIndividual>
-
-    <!-- ======================= MERCADO ======================= -->
-
-    <!-- Mercado BTC/USDT -->
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#mercadoBTCUSDT">
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Mercado"/>
-        <untitled-ontology-4:volatilidad rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">7.5</untitled-ontology-4:volatilidad>
-        <untitled-ontology-4:volumenTransacciones rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">5000000000.0</untitled-ontology-4:volumenTransacciones>
-        <rdfs:comment>Mercado muy líquido y con alta volatilidad de Bitcoin contra USDT.</rdfs:comment>
-    </owl:NamedIndividual>
-
-    <!-- Mercado ALT/USDT genérico -->
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#mercadoAltcoins">
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Mercado"/>
-        <untitled-ontology-4:volatilidad rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">9.0</untitled-ontology-4:volatilidad>
-        <untitled-ontology-4:volumenTransacciones rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">800000000.0</untitled-ontology-4:volumenTransacciones>
-        <rdfs:comment>Mercado de altcoins con mayor riesgo y variaciones de precio.</rdfs:comment>
-    </owl:NamedIndividual>
-
-    <!-- ======================= NODO ======================= -->
-
-    <!-- Nodo validador PoS -->
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#nodoValidadorPoS">
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Nodo"/>
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Blockchain"/>
-        <untitled-ontology-4:operador>Validador que bloquea tokens para participar en el consenso PoS</untitled-ontology-4:operador>
-        <rdfs:comment>Nodo que propone y valida bloques en redes Proof of Stake.</rdfs:comment>
-    </owl:NamedIndividual>
-
-    <!-- Nodo archivado -->
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#nodoArchivado">
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Nodo"/>
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Blockchain"/>
-        <untitled-ontology-4:operador>Nodo que almacena todo el historial completo de estados</untitled-ontology-4:operador>
-        <rdfs:comment>Guarda información adicional de la red más allá de los bloques recientes.</rdfs:comment>
-    </owl:NamedIndividual>
-
-    <!-- ======================= CUSTODIA ======================= -->
-
-    <!-- Servicio de custodia institucional -->
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#custodiaInstitucional">
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Custodia"/>
-        <untitled-ontology-4:proveedorDeServicios>Entidad financiera regulada</untitled-ontology-4:proveedorDeServicios>
-        <untitled-ontology-4:segurosContraPérdidas>Seguro para grandes clientes institucionales</untitled-ontology-4:segurosContraPérdidas>
-        <rdfs:comment>Custodia de criptos ofrecida por bancos o empresas reguladas.</rdfs:comment>
-    </owl:NamedIndividual>
-
-    <!-- Custodia propia (self-custody) -->
-    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#custodiaPropia">
-        <rdf:type rdf:resource="http://www.semanticweb.org/cristian/ontologies/2025/8/untitled-ontology-4#Custodia"/>
-        <untitled-ontology-4:proveedorDeServicios>Usuario final</untitled-ontology-4:proveedorDeServicios>
-        <untitled-ontology-4:estadoConexión>Variable (puede ser fría o caliente)</untitled-ontology-4:estadoConexión>
-        <rdfs:comment>El propio usuario controla sus llaves privadas sin intermediarios.</rdfs:comment>
-    </owl:NamedIndividual>
-
-    <!-- ================================================================== -->
-    <!-- FIN DE LAS NUEVAS INSTANCIAS                                      -->
-    <!-- ================================================================== -->
-
-    
 
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -2176,6 +1928,4 @@
 
 
 <!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
-
-
 
