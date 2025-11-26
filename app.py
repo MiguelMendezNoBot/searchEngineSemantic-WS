@@ -117,22 +117,8 @@ def mostrar_info_dbpedia(nombre_cripto):
                 # Guardar en cache
                 cache_offline.agregar_al_cache(nombre_cripto, datos)
                 
-                st.markdown('<div class="dbpedia-box">', unsafe_allow_html=True)
-                st.markdown("**🔗 Fuente:** DBpedia (Online - API REST)")
-                
-                st.write(f"**{datos.get('label', nombre_cripto)}**")
-                
-                if datos.get("abstract"):
-                    st.write("**Descripción:**")
-                    st.write(datos["abstract"])
-                
-                if datos.get("categories"):
-                    st.write(f"**📂 Categorías:** {', '.join(datos['categories'])}")
-                
-                if datos.get("uri"):
-                    st.markdown(f"[🔗 Ver más en DBpedia]({datos['uri']})")
-                
-                st.markdown('</div>', unsafe_allow_html=True)
+                # Usar el formato de ontología
+                mostrar_info_dbpedia_formato_ontologia(datos)
             else:
                 st.info("ℹ️ No se encontró información adicional en DBpedia")
     else:
@@ -141,18 +127,92 @@ def mostrar_info_dbpedia(nombre_cripto):
         datos_cache = cache_offline.obtener_del_cache(nombre_cripto)
         
         if datos_cache:
-            st.markdown('<div class="dbpedia-box">', unsafe_allow_html=True)
-            st.markdown("**💾 Fuente:** Cache Local (Offline)")
-            
-            st.write(f"**{datos_cache.get('label', nombre_cripto)}**")
-            
-            if datos_cache.get("abstract"):
-                st.write("**Descripción:**")
-                st.write(datos_cache["abstract"])
-            
-            st.markdown('</div>', unsafe_allow_html=True)
+            # Usar el formato de ontología
+            mostrar_info_dbpedia_formato_ontologia(datos_cache)
         else:
             st.info("ℹ️ Sin datos en cache para este término")
+
+def limpiar_texto_dbpedia(texto):
+    """
+    Limpia el texto de DBpedia removiendo etiquetas HTML y formateando
+    """
+    import re
+    if not texto:
+        return texto
+    
+    # Remover etiquetas <B> y </B> pero mantener el contenido
+    texto = re.sub(r'<B>', '**', texto)
+    texto = re.sub(r'</B>', '**', texto)
+    
+    # Remover otras etiquetas HTML comunes
+    texto = re.sub(r'<[^>]+>', '', texto)
+    
+    return texto
+
+def mostrar_info_dbpedia_formato_ontologia(datos, numero=None):
+    """
+    Muestra información de DBpedia con el mismo formato que la ontología local
+    Simula la estructura de un individuo de la ontología
+    """
+    # Limpiar el label
+    label_limpio = limpiar_texto_dbpedia(datos.get('label', 'Sin nombre'))
+    
+    # Encabezado similar a la ontología
+    if numero:
+        st.markdown(f"### 📄 {numero}. {label_limpio}")
+    else:
+        st.markdown(f"### 📄 {label_limpio}")
+    
+    # Mostrar tipo (similar a las clases en ontología)
+    if datos.get('tipo'):
+        st.write(f"**🏷️ Tipo:** {datos.get('tipo', 'Unknown')}")
+    
+    # Si tiene múltiples tipos, mostrarlos
+    if datos.get('tipos_completos') and len(datos.get('tipos_completos', [])) > 1:
+        tipos_str = ', '.join([t.split('/')[-1] for t in datos['tipos_completos']])
+        st.write(f"**🏷️ Tipos adicionales:** {tipos_str}")
+    
+    # Mostrar propiedades como en la ontología
+    propiedades_mostradas = False
+    
+    # URI (equivalente a identificador)
+    if datos.get('uri'):
+        st.write(f"**🔗 URI:** `{datos['uri'].split('/')[-1]}`")
+        propiedades_mostradas = True
+    
+    # Abstract/Descripción (equivalente a rdfs:comment)
+    if datos.get('abstract'):
+        abstract_limpio = limpiar_texto_dbpedia(datos['abstract'])
+        st.write(f"**📝 Descripción:** {abstract_limpio}")
+        propiedades_mostradas = True
+    
+    # Categorías (equivalente a dct:subject)
+    if datos.get('categories'):
+        categorias_limpias = [cat.split(':')[-1].replace('_', ' ') for cat in datos['categories']]
+        st.write(f"**📂 Categorías:** {', '.join(categorias_limpias)}")
+        propiedades_mostradas = True
+    
+    # Propiedades adicionales si existen
+    if datos.get('creator'):
+        st.write(f"**👤 Creador:** {datos['creator']}")
+        propiedades_mostradas = True
+    
+    if datos.get('releaseDate'):
+        st.write(f"**📅 Fecha de lanzamiento:** {datos['releaseDate']}")
+        propiedades_mostradas = True
+    
+    if datos.get('thumbnail'):
+        st.write(f"**🖼️ Imagen:** [Ver thumbnail]({datos['thumbnail']})")
+        propiedades_mostradas = True
+    
+    if not propiedades_mostradas:
+        st.info("No hay propiedades adicionales disponibles en DBpedia")
+    
+    # Link a DBpedia (similar a rdfs:seeAlso)
+    if datos.get('uri'):
+        st.markdown(f"[🌐 Ver más en DBpedia]({datos['uri']})")
+    
+    st.markdown("---")
 
 # ==================== SIDEBAR ====================
 st.sidebar.header("⚙️ Configuración")
@@ -216,7 +276,7 @@ st.sidebar.info("""
 **Tipos de búsqueda:**
 - **Por nombre:** Busca individuos que contengan el término
 - **Por clase:** Lista todos los individuos de una clase específica
-- **DBpedia:** Búsqueda extendida en DBpedia
+- **DBpedia:** Búsqueda extendida en DBpedia con 3 modos
 - **Explorar:** Navega por toda la ontología
 
 **Nota:** Con conexión a internet, los resultados se enriquecen automáticamente con DBpedia.
@@ -339,93 +399,167 @@ elif tipo_busqueda == "📂 Búsqueda por clase":
             except Exception as e:
                 st.error(f"❌ Error al buscar instancias: {e}")
 
-# ==================== BÚSQUEDA EN DBPEDIA ====================
+# ==================== BÚSQUEDA EN DBPEDIA MEJORADA ====================
 elif tipo_busqueda == "🌐 Búsqueda en DBpedia":
     st.subheader("🌐 Búsqueda en DBpedia")
     
     if not conexion_online:
         st.warning("⚠️ Sin conexión a internet. Mostrando resultados del cache local.")
     
-    col1, col2 = st.columns([3, 1])
-    with col1:
-        termino_dbpedia = st.text_input(
-            "Buscar en DBpedia:",
-            placeholder="Ejemplo: Ethereum, Smart Contract, DeFi...",
-            key="busqueda_dbpedia"
-        )
-    with col2:
-        st.write("")
-        st.write("")
-        buscar_dbpedia_btn = st.button("🌐 Buscar", type="primary", use_container_width=True)
+    # Tabs para diferentes tipos de búsqueda
+    tab_general, tab_instancias, tab_categoria = st.tabs([
+        "🔍 Búsqueda General", 
+        "📋 Instancias de Clase",
+        "🏷️ Por Categoría"
+    ])
     
-    if buscar_dbpedia_btn and termino_dbpedia:
-        if conexion_online:
-            with st.spinner("🔍 Consultando DBpedia..."):
-                # PRIMERO intentar con API REST (más rápida)
-                st.info("🚀 Usando DBpedia Lookup API...")
-                resultados_api = dbpedia.buscar_con_api_rest(termino_dbpedia)
-                
-                if resultados_api:
-                    st.success(f"✅ Se encontraron {len(resultados_api)} resultados para '{termino_dbpedia}'")
+    # ===== TAB 1: BÚSQUEDA GENERAL =====
+    with tab_general:
+        col1, col2 = st.columns([3, 1])
+        with col1:
+            termino_dbpedia = st.text_input(
+                "Buscar en DBpedia:",
+                placeholder="Ejemplo: Ethereum, Smart Contract, DeFi...",
+                key="busqueda_dbpedia_general"
+            )
+        with col2:
+            st.write("")
+            st.write("")
+            buscar_dbpedia_btn = st.button("🌐 Buscar", type="primary", key="btn_general")
+        
+        if buscar_dbpedia_btn and termino_dbpedia:
+            if conexion_online:
+                with st.spinner("🔍 Consultando DBpedia..."):
+                    # API REST (más rápida)
+                    st.info("🚀 Usando DBpedia Lookup API...")
+                    resultados_api = dbpedia.buscar_con_api_rest(termino_dbpedia)
                     
-                    # Mostrar primer resultado destacado
-                    st.markdown("### 📌 Resultado Principal")
-                    principal = resultados_api[0]
-                    
-                    st.markdown(f"**{principal.get('label', 'Sin título')}**")
-                    st.write(principal.get('abstract', 'Sin descripción'))
-                    
-                    if principal.get('categories'):
-                        st.write(f"**📂 Categorías:** {', '.join(principal['categories'])}")
-                    
-                    if principal.get('uri'):
-                        st.markdown(f"[🔗 Ver en DBpedia]({principal['uri']})")
-                    
-                    # Guardar en cache
-                    cache_offline.agregar_al_cache(termino_dbpedia, principal)
-                    
-                    # Mostrar otros resultados
-                    if len(resultados_api) > 1:
+                    if resultados_api:
+                        st.success(f"✅ Se encontraron **{len(resultados_api)}** resultados para '{termino_dbpedia}':")
                         st.markdown("---")
-                        st.markdown("### 🔗 Otros Resultados Relacionados")
                         
-                        for idx, resultado in enumerate(resultados_api[1:6], 1):
-                            with st.expander(f"#{idx} - {resultado.get('label', 'Sin título')}"):
-                                st.write(resultado.get('abstract', 'Sin descripción'))
-                                if resultado.get('categories'):
-                                    st.write(f"**Categorías:** {', '.join(resultado['categories'])}")
-                                if resultado.get('uri'):
-                                    st.markdown(f"[🔗 Ver en DBpedia]({resultado['uri']})")
-                
-                else:
-                    # Si API REST falla, intentar SPARQL
-                    st.info("🔄 Intentando con consulta SPARQL...")
-                    resultados_sparql = dbpedia.buscar_simple(termino_dbpedia)
-                    
-                    if resultados_sparql:
-                        st.success(f"✅ Se encontraron {len(resultados_sparql)} resultados")
+                        # Mostrar todos los resultados con el formato de ontología
+                        for idx, resultado in enumerate(resultados_api, 1):
+                            with st.container():
+                                mostrar_info_dbpedia_formato_ontologia(resultado, numero=idx)
                         
-                        for idx, resultado in enumerate(resultados_sparql, 1):
-                            with st.expander(f"#{idx} - {resultado.get('label', 'Sin título')}"):
-                                st.write(resultado.get('abstract', 'Sin descripción'))
-                                if resultado.get('uri'):
-                                    st.markdown(f"[🔗 Ver en DBpedia]({resultado['uri']})")
+                        # Guardar primer resultado en cache
+                        cache_offline.agregar_al_cache(termino_dbpedia, resultados_api[0])
                     else:
                         st.warning(f"⚠️ No se encontró información para '{termino_dbpedia}' en DBpedia")
                         st.info("💡 Intenta con términos en inglés como: Bitcoin, Ethereum, Blockchain, Cryptocurrency")
-        else:
-            # Modo offline
-            resultados_cache = cache_offline.buscar_en_cache(termino_dbpedia)
-            
-            if resultados_cache:
-                st.info(f"💾 Mostrando {len(resultados_cache)} resultados del cache local")
-                
-                for datos in resultados_cache:
-                    st.markdown("---")
-                    st.markdown(f"**{datos.get('label', 'Sin título')}**")
-                    st.write(datos.get("abstract", "")[:300] + "...")
             else:
-                st.warning("⚠️ Sin conexión y sin datos en cache para este término")
+                # Modo offline
+                resultados_cache = cache_offline.buscar_en_cache(termino_dbpedia)
+                
+                if resultados_cache:
+                    st.info(f"💾 Mostrando {len(resultados_cache)} resultados del cache local")
+                    st.markdown("---")
+                    
+                    for idx, datos in enumerate(resultados_cache, 1):
+                        with st.container():
+                            mostrar_info_dbpedia_formato_ontologia(datos, numero=idx)
+                else:
+                    st.warning("⚠️ Sin conexión y sin datos en cache para este término")
+    
+    # ===== TAB 2: BÚSQUEDA POR INSTANCIAS DE CLASE =====
+    with tab_instancias:
+        st.markdown("### 📋 Buscar Instancias de una Clase")
+        st.info("Encuentra ejemplos específicos de una categoría (ej: todas las criptomonedas, exchanges, etc.)")
+        
+        col1, col2 = st.columns([3, 1])
+        with col1:
+            clase_dbpedia = st.selectbox(
+                "Selecciona o escribe una clase:",
+                ["Cryptocurrency", "Blockchain", "Company", "Software", "Protocol"],
+                key="clase_dbpedia"
+            )
+            clase_custom = st.text_input(
+                "O escribe una clase personalizada:",
+                placeholder="Ejemplo: Exchange, Altcoin, Token...",
+                key="clase_custom"
+            )
+        
+        with col2:
+            st.write("")
+            st.write("")
+            buscar_instancias_btn = st.button("📋 Buscar Instancias", type="primary", key="btn_instancias")
+        
+        clase_a_buscar = clase_custom if clase_custom else clase_dbpedia
+        
+        if buscar_instancias_btn and clase_a_buscar:
+            if conexion_online:
+                with st.spinner(f"🔍 Buscando instancias de '{clase_a_buscar}'..."):
+                    # Intentar primero con búsqueda de instancias relacionadas (más flexible)
+                    instancias = dbpedia.buscar_instancias_relacionadas(clase_a_buscar)
+                    
+                    if not instancias:
+                        # Fallback: búsqueda por clase específica
+                        instancias = dbpedia.buscar_instancias_de_clase(clase_a_buscar)
+                    
+                    if instancias:
+                        st.success(f"✅ Se encontraron **{len(instancias)}** instancias de la clase '{clase_a_buscar}':")
+                        st.markdown("---")
+                        
+                        # Mostrar con formato de ontología
+                        for idx, instancia in enumerate(instancias, 1):
+                            with st.container():
+                                mostrar_info_dbpedia_formato_ontologia(instancia, numero=idx)
+                    else:
+                        st.warning(f"⚠️ No se encontraron instancias de '{clase_a_buscar}'")
+                        st.info("💡 Prueba con: Cryptocurrency, Blockchain, Exchange, Protocol")
+            else:
+                st.warning("⚠️ Se requiere conexión a internet para buscar instancias")
+    
+    # ===== TAB 3: BÚSQUEDA POR CATEGORÍA =====
+    with tab_categoria:
+        st.markdown("### 🏷️ Buscar por Categoría de DBpedia")
+        st.info("Las categorías son etiquetas que agrupan conceptos similares en Wikipedia/DBpedia")
+        
+        col1, col2 = st.columns([3, 1])
+        with col1:
+            categoria_ejemplo = st.selectbox(
+                "Categorías sugeridas:",
+                [
+                    "Cryptocurrencies",
+                    "Bitcoin",
+                    "Blockchain",
+                    "Financial_technology",
+                    "Cryptography"
+                ],
+                key="cat_ejemplo"
+            )
+            categoria_custom = st.text_input(
+                "O escribe una categoría:",
+                placeholder="Ejemplo: Digital_currencies, Fintech_companies...",
+                key="cat_custom"
+            )
+        
+        with col2:
+            st.write("")
+            st.write("")
+            buscar_cat_btn = st.button("🔍 Buscar", type="primary", key="btn_categoria")
+        
+        categoria_buscar = categoria_custom if categoria_custom else categoria_ejemplo
+        
+        if buscar_cat_btn and categoria_buscar:
+            if conexion_online:
+                with st.spinner(f"🔍 Buscando en categoría '{categoria_buscar}'..."):
+                    resultados = dbpedia.buscar_por_categoria(categoria_buscar)
+                    
+                    if resultados:
+                        st.success(f"✅ Se encontraron **{len(resultados)}** recursos en la categoría '{categoria_buscar}':")
+                        st.markdown("---")
+                        
+                        # Mostrar con formato de ontología
+                        for idx, item in enumerate(resultados, 1):
+                            with st.container():
+                                mostrar_info_dbpedia_formato_ontologia(item, numero=idx)
+                    else:
+                        st.warning(f"⚠️ No se encontraron recursos en la categoría '{categoria_buscar}'")
+                        st.info("💡 Las categorías deben estar en inglés y usar guiones bajos: Crypto_currencies")
+            else:
+                st.warning("⚠️ Se requiere conexión a internet para buscar por categoría")
 
 # ==================== EXPLORAR ONTOLOGÍA ====================
 else:

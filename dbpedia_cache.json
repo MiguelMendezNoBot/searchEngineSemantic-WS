@@ -11,13 +11,15 @@
   },
   "bitcoin": {
     "uri": "http://dbpedia.org/resource/Bitcoin",
-    "label": "<B>Bitcoin</B>",
-    "abstract": "<B>Bitcoin</B> (₿) is a cryptocurrency. It is a decentralized digital currency without a central bank or...",
+    "label": "Bitcoin",
+    "abstract": "Bitcoin (₿) is a cryptocurrency. It is a decentralized digital currency without a central bank or...",
     "categories": [
       "http://dbpedia.org/resource/Category:2009_software",
       "http://dbpedia.org/resource/Category:Application_layer_protocols",
       "http://dbpedia.org/resource/Category:Bitcoin"
-    ]
+    ],
+    "tipo": "Unknown",
+    "tipos_completos": []
   },
   "bitcoinCash": {
     "uri": "http://dbpedia.org/resource/Bitcoin_Cash",
@@ -27,7 +29,9 @@
       "http://dbpedia.org/resource/Category:2017_establishments",
       "http://dbpedia.org/resource/Category:Bitcoin_clients",
       "http://dbpedia.org/resource/Category:Cryptocurrency_projects"
-    ]
+    ],
+    "tipo": "Unknown",
+    "tipos_completos": []
   },
   "ethereum": {
     "uri": "http://dbpedia.org/resource/Ethereum",
@@ -37,7 +41,9 @@
       "http://dbpedia.org/resource/Category:2015_software",
       "http://dbpedia.org/resource/Category:Blockchains",
       "http://dbpedia.org/resource/Category:Bytecodes"
-    ]
+    ],
+    "tipo": "Unknown",
+    "tipos_completos": []
   },
   "DeFi": {
     "uri": "http://dbpedia.org/resource/Def_Jam_Recordings",
@@ -51,22 +57,80 @@
   },
   "Smart Contract": {
     "uri": "http://dbpedia.org/resource/Smart_contract",
-    "label": "<B>Smart</B> <B>contract</B>",
-    "abstract": " negotiation or performance of a <B>contract</B>. <B>Smart</B> <B>contracts</B> allow the performance of credible...",
+    "label": "Smart contract",
+    "abstract": "negotiation or performance of a contract. Smart contracts allow the performance of credible...",
     "categories": [
       "http://dbpedia.org/resource/Category:Blockchains",
       "http://dbpedia.org/resource/Category:Computer_law",
       "http://dbpedia.org/resource/Category:Contract_law"
-    ]
+    ],
+    "tipo": "Unknown",
+    "tipos_completos": []
   },
   "solana": {
     "uri": "http://dbpedia.org/resource/Javier_Solana",
-    "label": "Javier <B>Solana</B>",
-    "abstract": "Francisco Javier <B>Solana</B> de Madariaga (Spanish: [fɾanˈθisko xaˈβjeɾ <B>soˈlana</B> ðe maðaˈɾjaɣa]; born 14...",
+    "label": "Javier Solana",
+    "abstract": "Francisco Javier Solana de Madariaga (Spanish: [fɾanˈθisko xaˈβjeɾ soˈlana ðe maðaˈɾjaɣa]; born 14...",
     "categories": [
       "http://dbpedia.org/resource/Category:1942_births",
       "http://dbpedia.org/resource/Category:Center_on_International_Cooperation",
       "http://dbpedia.org/resource/Category:Commander's_Crosses_of_the_Order_of_the_Lithuanian_Grand_Duke_Gediminas"
+    ],
+    "tipo": "Politician",
+    "tipos_completos": [
+      "http://dbpedia.org/ontology/Politician",
+      "http://dbpedia.org/ontology/Person",
+      "http://dbpedia.org/ontology/Agent"
     ]
+  },
+  "exchange": {
+    "uri": "http://dbpedia.org/resource/Pathé_Exchange",
+    "label": "Pathé <B>Exchange</B>",
+    "abstract": "Pathé <B>Exchange</B> was an independent American film production and distribution company from 1920...",
+    "categories": [
+      "http://dbpedia.org/resource/Category:1904_establishments_in_New_York_(state)",
+      "http://dbpedia.org/resource/Category:Pathé_Exchange"
+    ],
+    "tipo": "Unknown",
+    "tipos_completos": []
+  },
+  "bash": {
+    "uri": "http://dbpedia.org/resource/Bash_(Unix_shell)",
+    "label": "<B>Bash</B> (Unix shell)",
+    "abstract": "GNU <B>Bash</B> or simply <B>Bash</B> is a Unix shell and command language written by Brian Fox for the GNU...",
+    "categories": [
+      "http://dbpedia.org/resource/Category:1989_software",
+      "http://dbpedia.org/resource/Category:Cross-platform_free_software",
+      "http://dbpedia.org/resource/Category:Domain-specific_programming_languages"
+    ],
+    "tipo": "Software",
+    "tipos_completos": [
+      "http://dbpedia.org/ontology/Software",
+      "http://dbpedia.org/ontology/Work"
+    ]
+  },
+  "altcoin": {
+    "uri": "http://dbpedia.org/resource/Cryptocurrency",
+    "label": "Cryptocurrency",
+    "abstract": "Sin descripción",
+    "categories": [
+      "http://dbpedia.org/resource/Category:Applications_of_cryptography",
+      "http://dbpedia.org/resource/Category:Cryptocurrencies",
+      "http://dbpedia.org/resource/Category:Decentralization"
+    ],
+    "tipo": "Unknown",
+    "tipos_completos": []
+  },
+  "Ethereum": {
+    "uri": "http://dbpedia.org/resource/Ethereum",
+    "label": "Ethereum",
+    "abstract": "Ethereum is an open source, public, blockchain-based distributed computing platform and operating...",
+    "categories": [
+      "http://dbpedia.org/resource/Category:2015_software",
+      "http://dbpedia.org/resource/Category:Blockchains",
+      "http://dbpedia.org/resource/Category:Bytecodes"
+    ],
+    "tipo": "Unknown",
+    "tipos_completos": []
   }
 }

@@ -2,18 +2,37 @@ from SPARQLWrapper import SPARQLWrapper, JSON
 import requests
 from typing import List, Dict, Optional
 import streamlit as st
+import re
 
 class DBpediaConnector:
-    """Conector para consultas a DBpedia (online y offline)"""
+    """Conector mejorado para consultas a DBpedia con soporte para instancias"""
     
     def __init__(self):
         self.endpoint_online = "https://dbpedia.org/sparql"
         self.sparql = SPARQLWrapper(self.endpoint_online)
         self.sparql.setReturnFormat(JSON)
-        self.sparql.setTimeout(30)  # Aumentar timeout
+        self.sparql.setTimeout(30)
         self.timeout = 30
-        # Agregar user agent
         self.sparql.addCustomHttpHeader("User-Agent", "Mozilla/5.0")
+    
+    def limpiar_html(self, texto):
+        """
+        Limpia etiquetas HTML del texto de DBpedia
+        """
+        if not texto:
+            return texto
+        
+        # Remover etiquetas <B> y </B>
+        texto = re.sub(r'<B>', '', texto, flags=re.IGNORECASE)
+        texto = re.sub(r'</B>', '', texto, flags=re.IGNORECASE)
+        
+        # Remover otras etiquetas HTML comunes
+        texto = re.sub(r'<[^>]+>', '', texto)
+        
+        # Limpiar espacios múltiples
+        texto = re.sub(r'\s+', ' ', texto).strip()
+        
+        return texto
     
     def is_online(self) -> bool:
         """Verifica si hay conexión a DBpedia"""
@@ -23,170 +42,275 @@ class DBpediaConnector:
         except:
             return False
     
-    def buscar_criptomoneda(self, nombre: str) -> Optional[Dict]:
+    def buscar_instancias_de_clase(self, clase: str, limit: int = 20) -> List[Dict]:
         """
-        Busca información de una criptomoneda en DBpedia
+        Busca INSTANCIAS de una clase específica en DBpedia
         
         Args:
-            nombre: Nombre de la criptomoneda (ej: "Bitcoin", "Ethereum")
+            clase: Nombre de la clase (ej: "Cryptocurrency", "Blockchain")
+            limit: Número máximo de resultados
         
         Returns:
-            Diccionario con información o None si no se encuentra
+            Lista de instancias encontradas
         """
-        # Primero intenta buscar directamente el recurso
+        # Query para encontrar instancias de una clase
         query = f"""
         PREFIX dbo: <http://dbpedia.org/ontology/>
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         
-        SELECT DISTINCT ?resource ?label ?abstract ?thumbnail ?website
+        SELECT DISTINCT ?instancia ?label ?abstract ?thumbnail
         WHERE {{
-            ?resource rdfs:label ?label .
-            OPTIONAL {{ ?resource dbo:abstract ?abstract . }}
-            OPTIONAL {{ ?resource dbo:thumbnail ?thumbnail . }}
-            OPTIONAL {{ ?resource foaf:homepage ?website . }}
+            # Buscar instancias que sean de tipo relacionado con la clase
+            {{
+                ?instancia rdf:type dbo:{clase} .
+            }}
+            UNION
+            {{
+                ?instancia rdf:type ?tipo .
+                ?tipo rdfs:label ?tipoLabel .
+                FILTER(CONTAINS(LCASE(STR(?tipoLabel)), "{clase.lower()}"))
+            }}
             
-            FILTER (
-                (LCASE(STR(?label)) = "{nombre.lower()}" ||
-                 CONTAINS(LCASE(STR(?label)), "{nombre.lower()}")) &&
-                LANG(?label) = "en"
-            )
+            ?instancia rdfs:label ?label .
+            OPTIONAL {{ ?instancia dbo:abstract ?abstract . }}
+            OPTIONAL {{ ?instancia dbo:thumbnail ?thumbnail . }}
+            
+            FILTER(LANG(?label) = "en")
+            FILTER(LANG(?abstract) = "en" || !BOUND(?abstract))
         }}
-        LIMIT 5
+        LIMIT {limit}
         """
         
         try:
             self.sparql.setQuery(query)
-            self.sparql.setTimeout(15)
+            self.sparql.setTimeout(30)
             results = self.sparql.query().convert()
             
-            if results["results"]["bindings"]:
-                return self._procesar_resultados(results)
-            return None
+            instancias = []
+            for result in results["results"]["bindings"]:
+                instancia = {
+                    "uri": result.get("instancia", {}).get("value", ""),
+                    "label": self.limpiar_html(result.get("label", {}).get("value", "Sin nombre")),
+                    "abstract": self.limpiar_html(result.get("abstract", {}).get("value", "Sin descripción"))[:300] + "...",
+                    "thumbnail": result.get("thumbnail", {}).get("value", "")
+                }
+                instancias.append(instancia)
+            
+            return instancias
             
         except Exception as e:
-            st.error(f"Error en consulta DBpedia: {e}")
-            return None
+            st.warning(f"Error en consulta SPARQL: {e}")
+            return []
     
-    def buscar_relacionados(self, concepto: str) -> List[Dict]:
+    def buscar_instancias_relacionadas(self, termino: str) -> List[Dict]:
         """
-        Busca conceptos relacionados en DBpedia
+        Busca instancias RELACIONADAS con un término
+        Más flexible que buscar por clase exacta
         
         Args:
-            concepto: Concepto a buscar (ej: "blockchain", "smart contract")
+            termino: Término de búsqueda (ej: "Bitcoin", "Exchange")
         
         Returns:
-            Lista de recursos relacionados
+            Lista de instancias relacionadas
         """
         query = f"""
+        PREFIX dbo: <http://dbpedia.org/ontology/>
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX dct: <http://purl.org/dc/terms/>
+        
+        SELECT DISTINCT ?instancia ?label ?abstract ?tipo
+        WHERE {{
+            ?instancia rdfs:label ?label .
+            OPTIONAL {{ ?instancia dbo:abstract ?abstract . }}
+            OPTIONAL {{ ?instancia rdf:type ?tipo . }}
+            
+            # Buscar en el label o en categorías
+            FILTER(
+                CONTAINS(LCASE(?label), "{termino.lower()}") ||
+                EXISTS {{ ?instancia dct:subject ?cat . FILTER(CONTAINS(LCASE(STR(?cat)), "{termino.lower()}")) }}
+            )
+            
+            FILTER(LANG(?label) = "en")
+            FILTER(LANG(?abstract) = "en" || !BOUND(?abstract))
+        }}
+        LIMIT 15
+        """
+        
+        try:
+            self.sparql.setQuery(query)
+            self.sparql.setTimeout(30)
+            results = self.sparql.query().convert()
+            
+            instancias = []
+            for result in results["results"]["bindings"]:
+                tipo = result.get("tipo", {}).get("value", "")
+                tipo_simple = tipo.split("/")[-1] if tipo else "Unknown"
+                
+                instancia = {
+                    "uri": result.get("instancia", {}).get("value", ""),
+                    "label": self.limpiar_html(result.get("label", {}).get("value", "Sin nombre")),
+                    "abstract": self.limpiar_html(result.get("abstract", {}).get("value", "Sin descripción"))[:250] + "...",
+                    "tipo": tipo_simple
+                }
+                instancias.append(instancia)
+            
+            return instancias
+            
+        except Exception as e:
+            st.warning(f"Error buscando instancias: {e}")
+            return []
+    
+    def obtener_instancias_con_propiedades(self, clase: str) -> List[Dict]:
+        """
+        Obtiene instancias CON sus propiedades principales
+        Ideal para mostrar información detallada
+        
+        Args:
+            clase: Clase a buscar (ej: "Cryptocurrency")
+        
+        Returns:
+            Lista de instancias con propiedades
+        """
+        query = f"""
+        PREFIX dbo: <http://dbpedia.org/ontology/>
+        PREFIX dbp: <http://dbpedia.org/property/>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         
-        SELECT DISTINCT ?resource ?label ?comment
+        SELECT DISTINCT ?instancia ?label ?abstract ?creator ?releaseDate
         WHERE {{
-            ?resource rdfs:label ?label .
-            OPTIONAL {{ ?resource rdfs:comment ?comment . }}
+            ?instancia rdf:type dbo:{clase} .
+            ?instancia rdfs:label ?label .
             
-            FILTER (
-                CONTAINS(LCASE(?label), "{concepto.lower()}") &&
-                LANG(?label) = "en"
-            )
+            OPTIONAL {{ ?instancia dbo:abstract ?abstract . }}
+            OPTIONAL {{ ?instancia dbo:creator ?creator . }}
+            OPTIONAL {{ ?instancia dbp:released ?releaseDate . }}
+            
+            FILTER(LANG(?label) = "en")
+            FILTER(LANG(?abstract) = "en" || !BOUND(?abstract))
         }}
         LIMIT 10
         """
         
         try:
             self.sparql.setQuery(query)
-            self.sparql.setTimeout(15)
             results = self.sparql.query().convert()
-            return self._procesar_lista_resultados(results)
+            
+            instancias = []
+            for result in results["results"]["bindings"]:
+                instancia = {
+                    "uri": result.get("instancia", {}).get("value", ""),
+                    "label": self.limpiar_html(result.get("label", {}).get("value", "")),
+                    "abstract": self.limpiar_html(result.get("abstract", {}).get("value", ""))[:300] + "...",
+                    "creator": result.get("creator", {}).get("value", "Desconocido"),
+                    "releaseDate": result.get("releaseDate", {}).get("value", "Desconocido")
+                }
+                instancias.append(instancia)
+            
+            return instancias
             
         except Exception as e:
-            st.error(f"Error buscando relacionados: {e}")
+            st.warning(f"Error obteniendo propiedades: {e}")
             return []
     
-    def obtener_propiedades(self, recurso_uri: str) -> Dict:
+    def buscar_con_api_rest(self, termino: str) -> List[Dict]:
         """
-        Obtiene todas las propiedades de un recurso específico
+        Búsqueda usando la API REST de DBpedia Lookup
+        Ahora incluye el tipo de cada instancia y limpia HTML
         
         Args:
-            recurso_uri: URI del recurso en DBpedia
+            termino: Término a buscar
         
         Returns:
-            Diccionario con propiedades y valores
+            Lista de resultados con tipo
         """
-        query = f"""
-        SELECT ?property ?value
-        WHERE {{
-            <{recurso_uri}> ?property ?value .
-        }}
-        LIMIT 50
-        """
-        
         try:
-            self.sparql.setQuery(query)
-            results = self.sparql.query().convert()
+            url = f"https://lookup.dbpedia.org/api/search?query={termino}&format=json"
+            response = requests.get(url, timeout=10)
             
-            propiedades = {}
-            for result in results["results"]["bindings"]:
-                prop = result["property"]["value"].split("/")[-1]
-                val = result["value"]["value"]
-                propiedades[prop] = val
-            
-            return propiedades
-            
+            if response.status_code == 200:
+                data = response.json()
+                resultados = []
+                
+                for item in data.get("docs", [])[:10]:
+                    # Extraer tipo principal
+                    tipos = item.get("type", [])
+                    tipo_principal = tipos[0].split("/")[-1] if tipos else "Unknown"
+                    
+                    # Limpiar label y abstract
+                    label_raw = item.get("label", ["Sin título"])[0] if isinstance(item.get("label"), list) else item.get("label", "Sin título")
+                    abstract_raw = item.get("comment", [""])[0] if item.get("comment") else ""
+                    
+                    resultado = {
+                        "uri": item.get("resource", [""])[0] if isinstance(item.get("resource"), list) else item.get("resource", ""),
+                        "label": self.limpiar_html(label_raw),
+                        "abstract": self.limpiar_html(abstract_raw)[:300] + "..." if abstract_raw else "Sin descripción",
+                        "categories": item.get("category", [])[:3] if item.get("category") else [],
+                        "tipo": tipo_principal,
+                        "tipos_completos": tipos[:3] if len(tipos) > 1 else []
+                    }
+                    resultados.append(resultado)
+                
+                return resultados
+            else:
+                st.warning(f"Error en API: {response.status_code}")
+                return []
+                
         except Exception as e:
-            st.error(f"Error obteniendo propiedades: {e}")
-            return {}
+            st.error(f"Error con API REST: {e}")
+            return []
     
-    def buscar_por_tipo(self, tipo: str = "Cryptocurrency") -> List[Dict]:
+    def buscar_por_categoria(self, categoria: str) -> List[Dict]:
         """
-        Busca recursos por tipo/categoría
+        Busca instancias en una CATEGORÍA específica de DBpedia
+        Útil para encontrar todas las criptomonedas, exchanges, etc.
         
         Args:
-            tipo: Tipo de recurso (ej: "Cryptocurrency", "Blockchain")
+            categoria: Categoría a buscar (ej: "Cryptocurrencies")
         
         Returns:
-            Lista de recursos del tipo especificado
+            Lista de recursos en esa categoría
         """
         query = f"""
         PREFIX dct: <http://purl.org/dc/terms/>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-        PREFIX dbo: <http://dbpedia.org/ontology/>
         
-        SELECT DISTINCT ?resource ?label ?abstract
+        SELECT DISTINCT ?instancia ?label ?abstract
         WHERE {{
-            ?resource rdfs:label ?label .
-            OPTIONAL {{ ?resource dbo:abstract ?abstract }}
+            ?instancia dct:subject ?cat .
+            ?instancia rdfs:label ?label .
+            OPTIONAL {{ ?instancia dbo:abstract ?abstract . }}
             
-            FILTER (
-                CONTAINS(LCASE(STR(?resource)), "{tipo.lower()}") &&
-                LANG(?label) = "en"
-            )
+            FILTER(CONTAINS(LCASE(STR(?cat)), "{categoria.lower()}"))
+            FILTER(LANG(?label) = "en")
+            FILTER(LANG(?abstract) = "en" || !BOUND(?abstract))
         }}
         LIMIT 20
         """
         
         try:
             self.sparql.setQuery(query)
-            self.sparql.setTimeout(15)
             results = self.sparql.query().convert()
-            return self._procesar_lista_resultados(results)
+            
+            instancias = []
+            for result in results["results"]["bindings"]:
+                instancia = {
+                    "uri": result.get("instancia", {}).get("value", ""),
+                    "label": self.limpiar_html(result.get("label", {}).get("value", "")),
+                    "abstract": self.limpiar_html(result.get("abstract", {}).get("value", ""))[:200] + "..."
+                }
+                instancias.append(instancia)
+            
+            return instancias
             
         except Exception as e:
-            st.error(f"Error buscando por tipo: {e}")
+            st.warning(f"Error buscando por categoría: {e}")
             return []
     
     def buscar_simple(self, termino: str) -> List[Dict]:
         """
-        Búsqueda simple y directa en DBpedia
-        Más permisiva y con mejores resultados
-        
-        Args:
-            termino: Término a buscar
-        
-        Returns:
-            Lista de resultados
+        Búsqueda simple y directa en DBpedia con limpieza de HTML
         """
-        # Consulta MÁS SIMPLE para evitar timeouts
         query = f"""
         SELECT DISTINCT ?resource ?label
         WHERE {{
@@ -202,7 +326,7 @@ class DBpediaConnector:
         try:
             self.sparql.setQuery(query)
             self.sparql.setTimeout(30)
-            self.sparql.setRequestMethod('GET')  # Usar GET en lugar de POST
+            self.sparql.setRequestMethod('GET')
             results = self.sparql.query().convert()
             
             if not results["results"]["bindings"]:
@@ -224,7 +348,7 @@ class DBpediaConnector:
             resultados = []
             for result in results["results"]["bindings"]:
                 uri = result.get("resource", {}).get("value", "")
-                label = result.get("label", {}).get("value", "")
+                label = self.limpiar_html(result.get("label", {}).get("value", ""))
                 
                 # Obtener abstract en consulta separada más simple
                 abstract = self._obtener_abstract_simple(uri)
@@ -260,109 +384,13 @@ class DBpediaConnector:
             
             if results["results"]["bindings"]:
                 abstract = results["results"]["bindings"][0].get("abstract", {}).get("value", "")
-                return abstract[:400] + "..." if len(abstract) > 400 else abstract
+                abstract_limpio = self.limpiar_html(abstract)
+                return abstract_limpio[:400] + "..." if len(abstract_limpio) > 400 else abstract_limpio
             return ""
         except:
             return ""
-    
-    def _procesar_resultados(self, results: Dict) -> Dict:
-        """Procesa resultados de consulta SPARQL"""
-        if not results["results"]["bindings"]:
-            return None
-        
-        primer_resultado = results["results"]["bindings"][0]
-        
-        return {
-            "uri": primer_resultado.get("resource", {}).get("value", ""),
-            "label": primer_resultado.get("label", {}).get("value", ""),
-            "abstract": primer_resultado.get("abstract", {}).get("value", "No hay descripción disponible"),
-            "thumbnail": primer_resultado.get("thumbnail", {}).get("value", ""),
-            "website": primer_resultado.get("website", {}).get("value", ""),
-            "creator": primer_resultado.get("creator", {}).get("value", ""),
-            "date": primer_resultado.get("date", {}).get("value", "")
-        }
-    
-    def _procesar_lista_resultados(self, results: Dict) -> List[Dict]:
-        """Procesa lista de resultados SPARQL"""
-        lista = []
-        
-        for result in results["results"]["bindings"]:
-            item = {
-                "uri": result.get("resource", {}).get("value", ""),
-                "label": result.get("label", {}).get("value", ""),
-                "comment": result.get("comment", {}).get("value", "")[:200] + "..."
-                if result.get("comment", {}).get("value", "") else ""
-            }
-            lista.append(item)
-        
-        return lista
-    
-    def enriquecer_con_dbpedia(self, nombre_cripto: str, datos_locales: Dict) -> Dict:
-        """
-        Enriquece datos locales con información de DBpedia
-        
-        Args:
-            nombre_cripto: Nombre de la criptomoneda
-            datos_locales: Datos de la ontología local
-        
-        Returns:
-            Datos combinados (local + DBpedia)
-        """
-        datos_dbpedia = self.buscar_criptomoneda(nombre_cripto)
-        
-        if datos_dbpedia:
-            return {
-                **datos_locales,
-                "dbpedia": datos_dbpedia,
-                "fuente_enriquecida": True
-            }
-        
-        return {
-            **datos_locales,
-            "fuente_enriquecida": False
-        }
-    
-    def buscar_con_api_rest(self, termino: str) -> List[Dict]:
-        """
-        Búsqueda usando la API REST de DBpedia Lookup
-        Más rápida y confiable que SPARQL
-        
-        Args:
-            termino: Término a buscar
-        
-        Returns:
-            Lista de resultados
-        """
-        try:
-            # Usar DBpedia Lookup API
-            url = f"https://lookup.dbpedia.org/api/search?query={termino}&format=json"
-            
-            response = requests.get(url, timeout=10)
-            
-            if response.status_code == 200:
-                data = response.json()
-                resultados = []
-                
-                for item in data.get("docs", [])[:10]:
-                    resultado = {
-                        "uri": item.get("resource", [""])[0] if isinstance(item.get("resource"), list) else item.get("resource", ""),
-                        "label": item.get("label", ["Sin título"])[0] if isinstance(item.get("label"), list) else item.get("label", "Sin título"),
-                        "abstract": item.get("comment", [""])[0][:300] + "..." if item.get("comment") else "Sin descripción",
-                        "categories": item.get("category", [])[:3] if item.get("category") else []
-                    }
-                    resultados.append(resultado)
-                
-                return resultados
-            else:
-                st.warning(f"Error en API: {response.status_code}")
-                return []
-                
-        except Exception as e:
-            st.error(f"Error con API REST: {e}")
-            return []
 
 
-# Funciones auxiliares para modo offline
 class DBpediaOffline:
     """Manejo de datos DBpedia en modo offline (cache)"""
     
