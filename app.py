@@ -1,6 +1,7 @@
 import streamlit as st
 from owlready2 import *
 import os
+from dbpedia_connector import DBpediaConnector, DBpediaOffline
 
 try:
     import requests
@@ -43,13 +44,37 @@ st.markdown("""
         border-radius: 0.5rem;
         margin: 0.5rem 0;
     }
+    .dbpedia-box {
+        background-color: #e8f4f8;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin: 1rem 0;
+        border-left: 4px solid #1f77b4;
+    }
     </style>
 """, unsafe_allow_html=True)
 
 # ==================== TÍTULO ====================
 st.title("🔍 Buscador Semántico de Criptomonedas")
-st.markdown("### Ontología OWL - Web Semántica")
+st.markdown("### Ontología OWL + DBpedia - Web Semántica")
 st.markdown("---")
+
+# ==================== INICIALIZAR CONECTORES ====================
+@st.cache_resource
+def inicializar_dbpedia():
+    """Inicializa el conector de DBpedia"""
+    return DBpediaConnector()
+
+@st.cache_resource
+def inicializar_cache():
+    """Inicializa el cache offline"""
+    return DBpediaOffline()
+
+dbpedia = inicializar_dbpedia()
+cache_offline = inicializar_cache()
+
+# Verificar conexión
+conexion_online = dbpedia.is_online()
 
 # ==================== FUNCIONES ====================
 
@@ -63,7 +88,7 @@ def cargar_ontologia(archivo):
     except Exception as e:
         return None, str(e)
 
-def mostrar_info_individuo(individuo):
+def mostrar_info_individuo(individuo, enriquecer_dbpedia=False):
     """Mostrar información detallada de un individuo"""
     st.markdown(f"### 📄 {individuo.name}")
 
@@ -78,12 +103,10 @@ def mostrar_info_individuo(individuo):
         valores = prop[individuo]
         if valores:
             propiedades_encontradas = True
-            # Formatear valores
             if isinstance(valores, list):
                 valores_str = ", ".join([str(v) for v in valores])
             else:
                 valores_str = str(valores)
-
             st.write(f"**{prop.name}:** {valores_str}")
 
     if not propiedades_encontradas:
@@ -273,14 +296,78 @@ def mostrar_info_dbpedia(entidad, onto=None, archivo_owl=None):
 
     st.markdown("---")
 
+def mostrar_info_dbpedia(nombre_cripto):
+    """Muestra información enriquecida desde DBpedia"""
+    
+    if conexion_online:
+        with st.spinner(f"🔍 Buscando '{nombre_cripto}' en DBpedia..."):
+            # Intentar con API REST primero (más rápida)
+            resultados = dbpedia.buscar_con_api_rest(nombre_cripto)
+            
+            if resultados:
+                datos = resultados[0]  # Tomar el primer resultado
+                
+                # Guardar en cache
+                cache_offline.agregar_al_cache(nombre_cripto, datos)
+                
+                st.markdown('<div class="dbpedia-box">', unsafe_allow_html=True)
+                st.markdown("**🔗 Fuente:** DBpedia (Online - API REST)")
+                
+                st.write(f"**{datos.get('label', nombre_cripto)}**")
+                
+                if datos.get("abstract"):
+                    st.write("**Descripción:**")
+                    st.write(datos["abstract"])
+                
+                if datos.get("categories"):
+                    st.write(f"**📂 Categorías:** {', '.join(datos['categories'])}")
+                
+                if datos.get("uri"):
+                    st.markdown(f"[🔗 Ver más en DBpedia]({datos['uri']})")
+                
+                st.markdown('</div>', unsafe_allow_html=True)
+            else:
+                st.info("ℹ️ No se encontró información adicional en DBpedia")
+    else:
+        # Modo offline: buscar en cache
+        st.info("🔌 Modo Offline: Buscando en cache local...")
+        datos_cache = cache_offline.obtener_del_cache(nombre_cripto)
+        
+        if datos_cache:
+            st.markdown('<div class="dbpedia-box">', unsafe_allow_html=True)
+            st.markdown("**💾 Fuente:** Cache Local (Offline)")
+            
+            st.write(f"**{datos_cache.get('label', nombre_cripto)}**")
+            
+            if datos_cache.get("abstract"):
+                st.write("**Descripción:**")
+                st.write(datos_cache["abstract"])
+            
+            st.markdown('</div>', unsafe_allow_html=True)
+        else:
+            st.info("ℹ️ Sin datos en cache para este término")
+
 # ==================== SIDEBAR ====================
 st.sidebar.header("⚙️ Configuración")
+
+# Estado de conexión
+if conexion_online:
+    st.sidebar.success("✅ Conectado a DBpedia")
+else:
+    st.sidebar.warning("🔌 Modo Offline (Sin conexión)")
 
 # Cargar ontología
 archivo_owl = st.sidebar.text_input(
     "📁 Archivo OWL:", 
     value="criptomonedas.owl",
     help="Nombre del archivo OWL en la carpeta del proyecto"
+)
+
+# Opción para enriquecer con DBpedia
+enriquecer = st.sidebar.checkbox(
+    "🌐 Enriquecer con DBpedia",
+    value=True,
+    help="Agrega información de DBpedia a los resultados"
 )
 
 # Botón para recargar
@@ -330,6 +417,7 @@ st.sidebar.info("""
 **Tipos de búsqueda:**
 - **Por nombre:** Busca individuos que contengan el término
 - **Por clase:** Lista todos los individuos de una clase específica
+- **DBpedia:** Búsqueda extendida en DBpedia
 - **Explorar:** Navega por toda la ontología
 
 **Modos de búsqueda:**
@@ -338,10 +426,29 @@ st.sidebar.info("""
 - **🔄 Híbrido:** Combina resultados locales y de DBpedia
 """)
 
+# Test de conexión
+if st.sidebar.button("🧪 Probar DBpedia"):
+    with st.sidebar:
+        with st.spinner("Probando API REST..."):
+            test_results = dbpedia.buscar_con_api_rest("Bitcoin")
+            if test_results:
+                st.success(f"✅ API REST: {len(test_results)} resultados")
+                st.write(f"Encontrado: {test_results[0].get('label', 'N/A')}")
+            else:
+                st.warning("⚠️ API REST no responde")
+                
+                # Intentar SPARQL como fallback
+                with st.spinner("Probando SPARQL..."):
+                    test_sparql = dbpedia.buscar_simple("Bitcoin")
+                    if test_sparql:
+                        st.success(f"✅ SPARQL: {len(test_sparql)} resultados")
+                    else:
+                        st.error("❌ Ambos métodos fallaron")
+
 # ==================== TIPO DE BÚSQUEDA ====================
 tipo_busqueda = st.radio(
     "🔎 Selecciona el tipo de búsqueda:",
-    ["🔤 Búsqueda por nombre", "📂 Búsqueda por clase", "🗂️ Explorar ontología"],
+    ["🔤 Búsqueda por nombre", "📂 Búsqueda por clase", "🌐 Búsqueda en DBpedia", "🗂️ Explorar ontología"],
     horizontal=True
 )
 
@@ -359,8 +466,8 @@ if tipo_busqueda == "🔤 Búsqueda por nombre":
             key="busqueda_nombre"
         )
     with col2:
-        st.write("")  # Espaciador
-        st.write("")  # Espaciador
+        st.write("")
+        st.write("")
         buscar_btn = st.button("🔍 Buscar", type="primary", use_container_width=True)
 
     if buscar_btn and termino:
@@ -748,6 +855,6 @@ st.markdown("---")
 st.markdown("""
 <div style='text-align: center; color: gray; padding: 2rem;'>
     <p>🎓 Proyecto de Web Semántica - Buscador Semántico de Criptomonedas</p>
-    <p>Desarrollado con Streamlit y Owlready2</p>
+    <p>Desarrollado con Streamlit, Owlready2 y DBpedia</p>
 </div>
 """, unsafe_allow_html=True)
