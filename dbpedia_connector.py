@@ -10,9 +10,8 @@ class DBpediaConnector:
         self.endpoint_online = "https://dbpedia.org/sparql"
         self.sparql = SPARQLWrapper(self.endpoint_online)
         self.sparql.setReturnFormat(JSON)
-        self.sparql.setTimeout(30)  # Aumentar timeout
+        self.sparql.setTimeout(30)
         self.timeout = 30
-        # Agregar user agent
         self.sparql.addCustomHttpHeader("User-Agent", "Mozilla/5.0")
     
     def is_online(self) -> bool:
@@ -33,10 +32,10 @@ class DBpediaConnector:
         Returns:
             Diccionario con información o None si no se encuentra
         """
-        # Primero intenta buscar directamente el recurso
         query = f"""
         PREFIX dbo: <http://dbpedia.org/ontology/>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX dct: <http://purl.org/dc/terms/>
         
         SELECT DISTINCT ?resource ?label ?abstract ?thumbnail ?website
         WHERE {{
@@ -44,6 +43,24 @@ class DBpediaConnector:
             OPTIONAL {{ ?resource dbo:abstract ?abstract . }}
             OPTIONAL {{ ?resource dbo:thumbnail ?thumbnail . }}
             OPTIONAL {{ ?resource foaf:homepage ?website . }}
+            
+            # Filtrar solo entidades relacionadas con criptomonedas
+            {{
+                ?resource dct:subject ?subject .
+                FILTER(
+                    REGEX(STR(?subject), "Cryptocurrencies", "i") ||
+                    REGEX(STR(?subject), "Blockchain", "i") ||
+                    REGEX(STR(?subject), "Digital_currencies", "i")
+                )
+            }}
+            UNION
+            {{
+                ?resource rdf:type ?type .
+                FILTER(
+                    REGEX(STR(?type), "Cryptocurrency", "i") ||
+                    REGEX(STR(?type), "DigitalCurrency", "i")
+                )
+            }}
             
             FILTER (
                 (LCASE(STR(?label)) = "{nombre.lower()}" ||
@@ -69,7 +86,7 @@ class DBpediaConnector:
     
     def buscar_relacionados(self, concepto: str) -> List[Dict]:
         """
-        Busca conceptos relacionados en DBpedia
+        Busca conceptos relacionados con criptomonedas en DBpedia
         
         Args:
             concepto: Concepto a buscar (ej: "blockchain", "smart contract")
@@ -79,11 +96,22 @@ class DBpediaConnector:
         """
         query = f"""
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX dct: <http://purl.org/dc/terms/>
         
         SELECT DISTINCT ?resource ?label ?comment
         WHERE {{
             ?resource rdfs:label ?label .
             OPTIONAL {{ ?resource rdfs:comment ?comment . }}
+            
+            # Filtrar solo entidades relacionadas con criptomonedas
+            {{
+                ?resource dct:subject ?subject .
+                FILTER(
+                    REGEX(STR(?subject), "Cryptocurrencies", "i") ||
+                    REGEX(STR(?subject), "Blockchain", "i") ||
+                    REGEX(STR(?subject), "Digital_currencies", "i")
+                )
+            }}
             
             FILTER (
                 CONTAINS(LCASE(?label), "{concepto.lower()}") &&
@@ -139,7 +167,7 @@ class DBpediaConnector:
     
     def buscar_por_tipo(self, tipo: str = "Cryptocurrency") -> List[Dict]:
         """
-        Busca recursos por tipo/categoría
+        Busca recursos por tipo/categoría relacionados con criptomonedas
         
         Args:
             tipo: Tipo de recurso (ej: "Cryptocurrency", "Blockchain")
@@ -151,16 +179,17 @@ class DBpediaConnector:
         PREFIX dct: <http://purl.org/dc/terms/>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         PREFIX dbo: <http://dbpedia.org/ontology/>
+        PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
         
         SELECT DISTINCT ?resource ?label ?abstract
         WHERE {{
             ?resource rdfs:label ?label .
             OPTIONAL {{ ?resource dbo:abstract ?abstract }}
             
-            FILTER (
-                CONTAINS(LCASE(STR(?resource)), "{tipo.lower()}") &&
-                LANG(?label) = "en"
-            )
+            # Filtrar por tipo específico relacionado con criptomonedas
+            ?resource rdf:type dbo:{tipo} .
+            
+            FILTER(LANG(?label) = "en")
         }}
         LIMIT 20
         """
@@ -177,8 +206,7 @@ class DBpediaConnector:
     
     def buscar_simple(self, termino: str) -> List[Dict]:
         """
-        Búsqueda simple y directa en DBpedia
-        Más permisiva y con mejores resultados
+        Búsqueda simple en DBpedia filtrada para criptomonedas
         
         Args:
             termino: Término a buscar
@@ -186,11 +214,35 @@ class DBpediaConnector:
         Returns:
             Lista de resultados
         """
-        # Consulta MÁS SIMPLE para evitar timeouts
         query = f"""
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX dct: <http://purl.org/dc/terms/>
+        
         SELECT DISTINCT ?resource ?label
         WHERE {{
             ?resource rdfs:label ?label .
+            
+            # Filtrar solo entidades relacionadas con criptomonedas
+            {{
+                ?resource dct:subject ?subject .
+                FILTER(
+                    REGEX(STR(?subject), "Cryptocurrencies", "i") ||
+                    REGEX(STR(?subject), "Blockchain", "i") ||
+                    REGEX(STR(?subject), "Digital_currencies", "i") ||
+                    REGEX(STR(?subject), "Bitcoin", "i") ||
+                    REGEX(STR(?subject), "Ethereum", "i")
+                )
+            }}
+            UNION
+            {{
+                ?resource rdf:type ?type .
+                FILTER(
+                    REGEX(STR(?type), "Cryptocurrency", "i") ||
+                    REGEX(STR(?type), "DigitalCurrency", "i") ||
+                    REGEX(STR(?type), "Blockchain", "i")
+                )
+            }}
+            
             FILTER (
                 LCASE(?label) = "{termino.lower()}" &&
                 LANG(?label) = "en"
@@ -202,15 +254,35 @@ class DBpediaConnector:
         try:
             self.sparql.setQuery(query)
             self.sparql.setTimeout(30)
-            self.sparql.setRequestMethod('GET')  # Usar GET en lugar de POST
+            self.sparql.setRequestMethod('GET')
             results = self.sparql.query().convert()
             
             if not results["results"]["bindings"]:
-                # Si no hay resultados exactos, intentar búsqueda parcial
                 query2 = f"""
+                PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+                PREFIX dct: <http://purl.org/dc/terms/>
+                
                 SELECT DISTINCT ?resource ?label
                 WHERE {{
                     ?resource rdfs:label ?label .
+                    
+                    {{
+                        ?resource dct:subject ?subject .
+                        FILTER(
+                            REGEX(STR(?subject), "Cryptocurrencies", "i") ||
+                            REGEX(STR(?subject), "Blockchain", "i") ||
+                            REGEX(STR(?subject), "Digital_currencies", "i")
+                        )
+                    }}
+                    UNION
+                    {{
+                        ?resource rdf:type ?type .
+                        FILTER(
+                            REGEX(STR(?type), "Cryptocurrency", "i") ||
+                            REGEX(STR(?type), "DigitalCurrency", "i")
+                        )
+                    }}
+                    
                     FILTER (
                         CONTAINS(LCASE(?label), "{termino.lower()}") &&
                         LANG(?label) = "en"
@@ -226,7 +298,6 @@ class DBpediaConnector:
                 uri = result.get("resource", {}).get("value", "")
                 label = result.get("label", {}).get("value", "")
                 
-                # Obtener abstract en consulta separada más simple
                 abstract = self._obtener_abstract_simple(uri)
                 
                 item = {
@@ -296,73 +367,8 @@ class DBpediaConnector:
             lista.append(item)
         
         return lista
-    
-    def enriquecer_con_dbpedia(self, nombre_cripto: str, datos_locales: Dict) -> Dict:
-        """
-        Enriquece datos locales con información de DBpedia
-        
-        Args:
-            nombre_cripto: Nombre de la criptomoneda
-            datos_locales: Datos de la ontología local
-        
-        Returns:
-            Datos combinados (local + DBpedia)
-        """
-        datos_dbpedia = self.buscar_criptomoneda(nombre_cripto)
-        
-        if datos_dbpedia:
-            return {
-                **datos_locales,
-                "dbpedia": datos_dbpedia,
-                "fuente_enriquecida": True
-            }
-        
-        return {
-            **datos_locales,
-            "fuente_enriquecida": False
-        }
-    
-    def buscar_con_api_rest(self, termino: str) -> List[Dict]:
-        """
-        Búsqueda usando la API REST de DBpedia Lookup
-        Más rápida y confiable que SPARQL
-        
-        Args:
-            termino: Término a buscar
-        
-        Returns:
-            Lista de resultados
-        """
-        try:
-            # Usar DBpedia Lookup API
-            url = f"https://lookup.dbpedia.org/api/search?query={termino}&format=json"
-            
-            response = requests.get(url, timeout=10)
-            
-            if response.status_code == 200:
-                data = response.json()
-                resultados = []
-                
-                for item in data.get("docs", [])[:10]:
-                    resultado = {
-                        "uri": item.get("resource", [""])[0] if isinstance(item.get("resource"), list) else item.get("resource", ""),
-                        "label": item.get("label", ["Sin título"])[0] if isinstance(item.get("label"), list) else item.get("label", "Sin título"),
-                        "abstract": item.get("comment", [""])[0][:300] + "..." if item.get("comment") else "Sin descripción",
-                        "categories": item.get("category", [])[:3] if item.get("category") else []
-                    }
-                    resultados.append(resultado)
-                
-                return resultados
-            else:
-                st.warning(f"Error en API: {response.status_code}")
-                return []
-                
-        except Exception as e:
-            st.error(f"Error con API REST: {e}")
-            return []
 
 
-# Funciones auxiliares para modo offline
 class DBpediaOffline:
     """Manejo de datos DBpedia en modo offline (cache)"""
     
