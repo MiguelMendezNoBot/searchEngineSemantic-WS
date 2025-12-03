@@ -22,13 +22,14 @@ class DBpediaConnector:
         except:
             return False
     
-    def buscar_criptomoneda(self, nombre: str) -> Optional[Dict]:
+    def buscar_criptomoneda(self, nombre: str, lang: str = "en") -> Optional[Dict]:
         """
         Busca información de una criptomoneda en DBpedia
-        
+
         Args:
             nombre: Nombre de la criptomoneda (ej: "Bitcoin", "Ethereum")
-        
+            lang: Idioma para los resultados
+
         Returns:
             Diccionario con información o None si no se encuentra
         """
@@ -36,14 +37,14 @@ class DBpediaConnector:
         PREFIX dbo: <http://dbpedia.org/ontology/>
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         PREFIX dct: <http://purl.org/dc/terms/>
-        
+
         SELECT DISTINCT ?resource ?label ?abstract ?thumbnail ?website
         WHERE {{
             ?resource rdfs:label ?label .
-            OPTIONAL {{ ?resource dbo:abstract ?abstract . }}
+            OPTIONAL {{ ?resource dbo:abstract ?abstract . FILTER(LANG(?abstract) = "{lang}") }}
             OPTIONAL {{ ?resource dbo:thumbnail ?thumbnail . }}
             OPTIONAL {{ ?resource foaf:homepage ?website . }}
-            
+
             # Filtrar solo entidades relacionadas con criptomonedas
             {{
                 ?resource dct:subject ?subject .
@@ -61,11 +62,11 @@ class DBpediaConnector:
                     REGEX(STR(?type), "DigitalCurrency", "i")
                 )
             }}
-            
+
             FILTER (
                 (LCASE(STR(?label)) = "{nombre.lower()}" ||
                  CONTAINS(LCASE(STR(?label)), "{nombre.lower()}")) &&
-                LANG(?label) = "en"
+                LANG(?label) = "{lang}"
             )
         }}
         LIMIT 5
@@ -84,25 +85,26 @@ class DBpediaConnector:
             st.error(f"Error en consulta DBpedia: {e}")
             return None
     
-    def buscar_relacionados(self, concepto: str) -> List[Dict]:
+    def buscar_relacionados(self, concepto: str, lang: str = "en") -> List[Dict]:
         """
         Busca conceptos relacionados con criptomonedas en DBpedia
-        
+
         Args:
             concepto: Concepto a buscar (ej: "blockchain", "smart contract")
-        
+            lang: Idioma para los resultados
+
         Returns:
             Lista de recursos relacionados
         """
         query = f"""
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         PREFIX dct: <http://purl.org/dc/terms/>
-        
+
         SELECT DISTINCT ?resource ?label ?comment
         WHERE {{
             ?resource rdfs:label ?label .
-            OPTIONAL {{ ?resource rdfs:comment ?comment . }}
-            
+            OPTIONAL {{ ?resource rdfs:comment ?comment . FILTER(LANG(?comment) = "{lang}") }}
+
             # Filtrar solo entidades relacionadas con criptomonedas
             {{
                 ?resource dct:subject ?subject .
@@ -112,10 +114,10 @@ class DBpediaConnector:
                     REGEX(STR(?subject), "Digital_currencies", "i")
                 )
             }}
-            
+
             FILTER (
                 CONTAINS(LCASE(?label), "{concepto.lower()}") &&
-                LANG(?label) = "en"
+                LANG(?label) = "{lang}"
             )
         }}
         LIMIT 10
@@ -165,13 +167,14 @@ class DBpediaConnector:
             st.error(f"Error obteniendo propiedades: {e}")
             return {}
     
-    def buscar_por_tipo(self, tipo: str = "Cryptocurrency") -> List[Dict]:
+    def buscar_por_tipo(self, tipo: str = "Cryptocurrency", lang: str = "en") -> List[Dict]:
         """
         Busca recursos por tipo/categoría relacionados con criptomonedas
-        
+
         Args:
             tipo: Tipo de recurso (ej: "Cryptocurrency", "Blockchain")
-        
+            lang: Idioma para los resultados
+
         Returns:
             Lista de recursos del tipo especificado
         """
@@ -180,16 +183,16 @@ class DBpediaConnector:
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         PREFIX dbo: <http://dbpedia.org/ontology/>
         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-        
+
         SELECT DISTINCT ?resource ?label ?abstract
         WHERE {{
             ?resource rdfs:label ?label .
-            OPTIONAL {{ ?resource dbo:abstract ?abstract }}
-            
+            OPTIONAL {{ ?resource dbo:abstract ?abstract . FILTER(LANG(?abstract) = "{lang}") }}
+
             # Filtrar por tipo específico relacionado con criptomonedas
             ?resource rdf:type dbo:{tipo} .
-            
-            FILTER(LANG(?label) = "en")
+
+            FILTER(LANG(?label) = "{lang}")
         }}
         LIMIT 20
         """
@@ -204,24 +207,25 @@ class DBpediaConnector:
             st.error(f"Error buscando por tipo: {e}")
             return []
     
-    def buscar_simple(self, termino: str) -> List[Dict]:
+    def buscar_simple(self, termino: str, lang: str = "en") -> List[Dict]:
         """
         Búsqueda simple en DBpedia filtrada para criptomonedas
-        
+
         Args:
             termino: Término a buscar
-        
+            lang: Idioma para los resultados
+
         Returns:
             Lista de resultados
         """
         query = f"""
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         PREFIX dct: <http://purl.org/dc/terms/>
-        
+
         SELECT DISTINCT ?resource ?label
         WHERE {{
             ?resource rdfs:label ?label .
-            
+
             # Filtrar solo entidades relacionadas con criptomonedas
             {{
                 ?resource dct:subject ?subject .
@@ -242,10 +246,10 @@ class DBpediaConnector:
                     REGEX(STR(?type), "Blockchain", "i")
                 )
             }}
-            
+
             FILTER (
                 LCASE(?label) = "{termino.lower()}" &&
-                LANG(?label) = "en"
+                LANG(?label) = "{lang}"
             )
         }}
         LIMIT 5
@@ -261,11 +265,11 @@ class DBpediaConnector:
                 query2 = f"""
                 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
                 PREFIX dct: <http://purl.org/dc/terms/>
-                
+
                 SELECT DISTINCT ?resource ?label
                 WHERE {{
                     ?resource rdfs:label ?label .
-                    
+
                     {{
                         ?resource dct:subject ?subject .
                         FILTER(
@@ -282,10 +286,10 @@ class DBpediaConnector:
                             REGEX(STR(?type), "DigitalCurrency", "i")
                         )
                     }}
-                    
+
                     FILTER (
                         CONTAINS(LCASE(?label), "{termino.lower()}") &&
-                        LANG(?label) = "en"
+                        LANG(?label) = "{lang}"
                     )
                 }}
                 LIMIT 10
@@ -298,7 +302,7 @@ class DBpediaConnector:
                 uri = result.get("resource", {}).get("value", "")
                 label = result.get("label", {}).get("value", "")
                 
-                abstract = self._obtener_abstract_simple(uri)
+                abstract = self._obtener_abstract_simple(uri, lang)
                 
                 item = {
                     "uri": uri,
@@ -313,13 +317,13 @@ class DBpediaConnector:
             st.error(f"Error en búsqueda simple: {str(e)}")
             return []
     
-    def _obtener_abstract_simple(self, uri: str) -> str:
+    def _obtener_abstract_simple(self, uri: str, lang: str = "en") -> str:
         """Obtiene el abstract de un recurso específico"""
         query = f"""
         SELECT ?abstract
         WHERE {{
             <{uri}> dbo:abstract ?abstract .
-            FILTER (LANG(?abstract) = "en")
+            FILTER (LANG(?abstract) = "{lang}")
         }}
         LIMIT 1
         """

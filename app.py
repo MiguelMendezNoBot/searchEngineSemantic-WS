@@ -2,6 +2,7 @@ import streamlit as st
 from owlready2 import *
 import os
 from dbpedia_connector import DBpediaConnector, DBpediaOffline
+from translations import get_translation, get_current_language, set_language, LANGUAGES
 
 try:
     import requests
@@ -18,6 +19,10 @@ except ImportError:
     SPARQL_AVAILABLE = False
 
 from urllib.parse import quote
+
+# Initialize language in session state
+if 'language' not in st.session_state:
+    st.session_state['language'] = 'es'
 
 # ==================== CONFIGURACIÓN ====================
 st.set_page_config(
@@ -55,8 +60,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ==================== TÍTULO ====================
-st.title("🔍 Buscador Semántico de Criptomonedas")
-st.markdown("### Ontología OWL + DBpedia - Web Semántica")
+st.title(get_translation("title", get_current_language()))
+st.markdown(get_translation("subtitle", get_current_language()))
 st.markdown("---")
 
 # ==================== INICIALIZAR CONECTORES ====================
@@ -100,12 +105,25 @@ def cargar_ontologia(archivo):
 
 def mostrar_info_individuo(individuo):
     """Mostrar información detallada de un individuo"""
-    st.markdown(f"### 📄 {individuo.name}")
+    lang = get_current_language()
+
+    # Get label in current language or default
+    labels = individuo.label
+    label = None
+    for lbl in labels:
+        if hasattr(lbl, 'lang') and lbl.lang == lang:
+            label = lbl
+            break
+    if not label and labels:
+        label = labels[0]
+    display_name = str(label) if label else individuo.name
+
+    st.markdown(f"### 📄 {display_name}")
 
     # Mostrar tipos/clases
     tipos = [cls.name for cls in individuo.is_a if hasattr(cls, 'name')]
     if tipos:
-        st.write(f"**🏷️ Tipo:** {', '.join(tipos)}")
+        st.write(f"{get_translation('type', lang)} {', '.join(tipos)}")
 
     # Mostrar propiedades
     propiedades_encontradas = False
@@ -120,16 +138,16 @@ def mostrar_info_individuo(individuo):
             st.write(f"**{prop.name}:** {valores_str}")
 
     if not propiedades_encontradas:
-        st.info("No hay propiedades adicionales definidas")
+        st.info(get_translation("no_properties", lang))
 
     st.markdown("---")
 
-def buscar_en_dbpedia(termino, limite=10):
+def buscar_en_dbpedia(termino, limite=10, lang="en"):
     """Buscar entidades relacionadas con criptomonedas en DBpedia usando SPARQL queries"""
     if not SPARQL_AVAILABLE:
         return [], "SPARQLWrapper no está instalado. Instala SPARQLWrapper para usar búsquedas en DBpedia."
 
-    try:
+    def execute_query(query_lang):
         sparql = SPARQLWrapper("https://dbpedia.org/sparql")
         sparql.setReturnFormat(JSON)
 
@@ -140,14 +158,15 @@ def buscar_en_dbpedia(termino, limite=10):
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         PREFIX dct: <http://purl.org/dc/terms/>
 
-        SELECT DISTINCT ?entity ?label ?comment ?thumbnail
+        SELECT DISTINCT ?entity ?label ?comment_lang ?comment_en ?thumbnail
         WHERE {{
             ?entity rdfs:label ?label .
-            OPTIONAL {{ ?entity rdfs:comment ?comment . FILTER(LANG(?comment) = "en") }}
+            OPTIONAL {{ ?entity rdfs:comment ?comment_lang . FILTER(LANG(?comment_lang) = "{query_lang}") }}
+            OPTIONAL {{ ?entity rdfs:comment ?comment_en . FILTER(LANG(?comment_en) = "en") }}
             OPTIONAL {{ ?entity dbo:thumbnail ?thumbnail }}
-            FILTER(LANG(?label) = "en")
+            FILTER(LANG(?label) = "{query_lang}")
             FILTER(REGEX(?label, "{termino}", "i"))
-            
+
             # Filtrar solo conceptos relacionados con criptomonedas
             {{
                 ?entity dct:subject ?subject .
@@ -179,7 +198,9 @@ def buscar_en_dbpedia(termino, limite=10):
 
         entidades = []
         for result in results["results"]["bindings"]:
-            comment_value = result.get('comment', {}).get('value', 'No description available')
+            comment_lang = result.get('comment_lang', {}).get('value', '')
+            comment_en = result.get('comment_en', {}).get('value', '')
+            comment_value = comment_lang or comment_en or ''
             entidad = {
                 'uri': result['entity']['value'],
                 'label': result['label']['value'],
@@ -188,6 +209,16 @@ def buscar_en_dbpedia(termino, limite=10):
             }
             entidades.append(entidad)
 
+        return entidades
+
+    try:
+        # Try with selected language
+        entidades = execute_query(lang)
+        if entidades:
+            return entidades, None
+
+        # Fallback to English if no results
+        entidades = execute_query("en")
         return entidades, None
 
     except Exception as e:
@@ -195,6 +226,7 @@ def buscar_en_dbpedia(termino, limite=10):
 
 def mostrar_info_dbpedia(entidad, index):
     """Mostrar información detallada de una entidad DBpedia"""
+    lang = get_current_language()
     st.markdown(f"### 🌐 {entidad['label']}")
 
     # Thumbnail si existe
@@ -205,139 +237,132 @@ def mostrar_info_dbpedia(entidad, index):
             st.warning("No se pudo cargar la imagen")
 
     # Descripción
-    if entidad.get('comment'):
-        st.write(f"**📝 Descripción:** {entidad['comment']}")
+    comment = entidad.get('comment', '')
+    if not comment:
+        comment = get_translation("no_description", lang)
+    st.write(f"{get_translation('description', lang)} {comment}")
 
     # URI de DBpedia
-    st.write(f"**🔗 DBpedia URI:** [{entidad['uri']}]({entidad['uri']})")
+    st.write(f"{get_translation('dbpedia_uri', lang)} [{entidad['uri']}]({entidad['uri']})")
 
     st.markdown("---")
 
 # ==================== SIDEBAR ====================
-st.sidebar.header("⚙️ Configuración")
+lang = get_current_language()
+st.sidebar.header(get_translation("config", lang))
 
 # Estado de conexión
 if conexion_online:
-    st.sidebar.success("✅ Conectado a DBpedia")
+    st.sidebar.success(get_translation("connected", lang))
 else:
-    st.sidebar.warning("🔌 Modo Offline (Sin conexión)")
+    st.sidebar.warning(get_translation("offline", lang))
 
 # Obtener archivos OWL disponibles
 archivos_disponibles = obtener_archivos_owl()
 
 if not archivos_disponibles:
-    st.sidebar.error("❌ No se encontraron archivos OWL en la carpeta 'archivos_OWL'")
-    st.error("""
-    ### ⚠️ No hay archivos OWL disponibles
-    
-    **Solución:**
-    1. Crea una carpeta llamada `archivos_OWL` en el directorio del proyecto
-    2. Coloca tus archivos .owl en esa carpeta
-    3. Recarga la aplicación
+    st.sidebar.error(get_translation("no_owl_files", lang))
+    st.error(f"""
+    ### ⚠️ {get_translation("no_owl_files", lang)}
+
+    {get_translation("solution", lang)}
+    1. {get_translation("solution1", lang)}
+    2. {get_translation("solution2", lang)}
+    3. {get_translation("solution3", lang)}
     """)
     st.stop()
 
 # Selector de archivo OWL
 archivo_owl = st.sidebar.selectbox(
-    "📁 Selecciona archivo OWL:",
+    get_translation("select_owl", lang),
     archivos_disponibles,
-    help="Archivos OWL disponibles en la carpeta archivos_OWL"
+    help=get_translation("owl_help", lang)
 )
 
 # Botón para recargar
-if st.sidebar.button("🔄 Recargar Ontología"):
+if st.sidebar.button(get_translation("reload", lang)):
     st.cache_resource.clear()
 
 # Intentar cargar
 onto, error = cargar_ontologia(archivo_owl)
 
 if error:
-    st.sidebar.error(f"❌ Error al cargar: {error}")
+    st.sidebar.error(f"❌ {get_translation("error_loading", lang)} {error}")
     st.error(f"""
-    ### ⚠️ No se pudo cargar la ontología
-    
-    **Error:** {error}
-    
-    **Soluciones:**
-    1. Verifica que el archivo `{archivo_owl}` sea un OWL válido
-    2. Asegúrate de que fue exportado correctamente desde Protégé
-    3. Intenta con otro archivo
+    ### ⚠️ {get_translation("loading_error", lang)}
+
+    {get_translation("error", lang)} {error}
+
+    {get_translation("solutions", lang)}
+    1. {get_translation("solution1_load", lang)}
+    2. {get_translation("solution2_load", lang)}
+    3. {get_translation("solution3_load", lang)}
     """)
     st.stop()
 else:
-    st.sidebar.success("✅ Ontología cargada correctamente")
-    
+    st.sidebar.success(get_translation("loaded", lang))
+
     # Estadísticas
     num_clases = len(list(onto.classes()))
     num_propiedades = len(list(onto.properties()))
     num_individuos = len(list(onto.individuals()))
-    
-    st.sidebar.markdown("### 📊 Estadísticas")
-    st.sidebar.metric("Clases", num_clases)
-    st.sidebar.metric("Propiedades", num_propiedades)
-    st.sidebar.metric("Individuos", num_individuos)
+
+    st.sidebar.markdown(get_translation("statistics", lang))
+    st.sidebar.metric(get_translation("classes", lang), num_clases)
+    st.sidebar.metric(get_translation("properties", lang), num_propiedades)
+    st.sidebar.metric(get_translation("individuals", lang), num_individuos)
 
 # Modo de búsqueda
 st.sidebar.markdown("---")
 modo_busqueda = st.sidebar.radio(
-    "🔎 Modo de búsqueda:",
-    ["🏠 Local (Ontología)", "🌐 DBpedia", "🔄 Híbrido (Local + DBpedia)"],
-    help="Selecciona el origen de los datos para la búsqueda"
+    get_translation("search_mode", lang),
+    [get_translation("local", lang), get_translation("dbpedia", lang), get_translation("hybrid", lang)],
+    help=get_translation("mode_help", lang)
 )
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("### 💡 Ayuda")
-st.sidebar.info("""
-**Tipos de búsqueda:**
-- **Por nombre:** Busca individuos que contengan el término
-- **Por clase:** Lista todos los individuos de una clase específica
-- **Explorar:** Navega por toda la ontología
-
-**Modos de búsqueda:**
-- **🏠 Local:** Solo busca en la ontología cargada
-- **🌐 DBpedia:** Solo busca en DBpedia (filtrado para criptomonedas)
-- **🔄 Híbrido:** Combina resultados locales y de DBpedia
-""")
+st.sidebar.markdown(get_translation("help", lang))
+st.sidebar.info(get_translation("help_text", lang))
 
 # ==================== TIPO DE BÚSQUEDA ====================
 tipo_busqueda = st.radio(
-    "🔎 Selecciona el tipo de búsqueda:",
-    ["🔤 Búsqueda por nombre", "📂 Búsqueda por clase", "🗂️ Explorar ontología"],
+    get_translation("search_type", lang),
+    [get_translation("by_name", lang), get_translation("by_class", lang), get_translation("explore", lang)],
     horizontal=True
 )
 
 st.markdown("---")
 
 # ==================== BÚSQUEDA POR NOMBRE ====================
-if tipo_busqueda == "🔤 Búsqueda por nombre":
-    st.subheader("🔤 Búsqueda por nombre")
+if tipo_busqueda == get_translation("by_name", lang):
+    st.subheader(get_translation("search_subheader", lang))
 
     col1, col2 = st.columns([3, 1])
     with col1:
         termino = st.text_input(
-            "Ingrese el término de búsqueda:",
-            placeholder="Ejemplo: bitcoin, exchange, blockchain...",
+            get_translation("enter_term", lang),
+            placeholder=get_translation("placeholder", lang),
             key="busqueda_nombre"
         )
     with col2:
         st.write("")
         st.write("")
-        buscar_btn = st.button("🔍 Buscar", type="primary", use_container_width=True)
+        buscar_btn = st.button(get_translation("search", lang), type="primary", use_container_width=True)
 
     if buscar_btn and termino:
-        with st.spinner("Buscando..."):
+        with st.spinner(get_translation("searching", lang)):
             resultados_locales = []
             resultados_dbpedia = []
 
             # Búsqueda local (si no es modo DBpedia-only)
-            if modo_busqueda != "🌐 DBpedia":
+            if modo_busqueda != get_translation("dbpedia", lang):
                 for individuo in onto.individuals():
                     if termino.lower() in individuo.name.lower():
                         resultados_locales.append(individuo)
 
             # Búsqueda en DBpedia (si no es modo local-only)
-            if modo_busqueda != "🏠 Local (Ontología)":
-                entidades_dbpedia, error_dbpedia = buscar_en_dbpedia(termino)
+            if modo_busqueda != get_translation("local", lang):
+                entidades_dbpedia, error_dbpedia = buscar_en_dbpedia(termino, lang=get_current_language())
                 if error_dbpedia:
                     st.warning(f"⚠️ Error al buscar en DBpedia: {error_dbpedia}")
                 resultados_dbpedia = entidades_dbpedia
@@ -346,56 +371,56 @@ if tipo_busqueda == "🔤 Búsqueda por nombre":
             total_resultados = len(resultados_locales) + len(resultados_dbpedia)
 
             if total_resultados > 0:
-                st.success(f"✅ Se encontraron **{total_resultados}** resultados para '{termino}':")
+                st.success(get_translation("results_for", lang, count=total_resultados, term=termino))
                 st.markdown("---")
 
                 # Resultados locales
                 if resultados_locales:
-                    st.markdown("### 🏠 Resultados de la Ontología Local")
+                    st.markdown(get_translation("local_results", lang))
                     for ind in resultados_locales:
                         with st.container():
                             mostrar_info_individuo(ind)
 
                 # Resultados DBpedia
                 if resultados_dbpedia:
-                    st.markdown("### 🌐 Resultados de DBpedia")
+                    st.markdown(get_translation("dbpedia_results", lang))
                     for idx, entidad in enumerate(resultados_dbpedia):
                         with st.container():
                             mostrar_info_dbpedia(entidad, idx)
 
             else:
-                st.warning(f"⚠️ No se encontraron resultados para '{termino}'")
-                if modo_busqueda == "🏠 Local (Ontología)":
-                    st.info("💡 Intenta con otro término o explora la ontología para ver qué hay disponible")
-                elif modo_busqueda == "🌐 DBpedia":
-                    st.info("💡 Intenta con términos relacionados con criptomonedas, blockchain o finanzas")
+                st.warning(get_translation("no_results", lang, term=termino))
+                if modo_busqueda == get_translation("local", lang):
+                    st.info(get_translation("try_other", lang))
+                elif modo_busqueda == get_translation("dbpedia", lang):
+                    st.info(get_translation("try_crypto", lang))
                 else:
-                    st.info("💡 Intenta con otro término en ambos orígenes de datos")
+                    st.info(get_translation("try_both", lang))
 
 # ==================== BÚSQUEDA POR CLASE ====================
-elif tipo_busqueda == "📂 Búsqueda por clase":
-    st.subheader("📂 Búsqueda por clase")
+elif tipo_busqueda == get_translation("by_class", lang):
+    st.subheader(get_translation("class_subheader", lang))
 
-    if modo_busqueda == "🏠 Local (Ontología)" or modo_busqueda == "🔄 Híbrido (Local + DBpedia)":
+    if modo_busqueda == get_translation("local", lang) or modo_busqueda == get_translation("hybrid", lang):
         # Obtener lista de clases locales
         clases = sorted([cls.name for cls in onto.classes() if hasattr(cls, 'name')])
 
         if not clases:
-            st.warning("No se encontraron clases en la ontología local")
-            if modo_busqueda == "🏠 Local (Ontología)":
+            st.warning(get_translation("no_classes", lang))
+            if modo_busqueda == get_translation("local", lang):
                 st.stop()
 
         col1, col2 = st.columns([3, 1])
         with col1:
             clase_seleccionada = st.selectbox(
-                "Seleccione una clase:",
+                get_translation("select_class", lang),
                 clases,
                 key="clase_select"
             )
         with col2:
             st.write("")
             st.write("")
-            buscar_clase_btn = st.button("📋 Listar instancias", type="primary", use_container_width=True)
+            buscar_clase_btn = st.button(get_translation("list_instances", lang), type="primary", use_container_width=True)
 
         if buscar_clase_btn and clase_seleccionada:
             with st.spinner(f"Buscando instancias de {clase_seleccionada}..."):
@@ -478,13 +503,14 @@ elif tipo_busqueda == "📂 Búsqueda por clase":
                         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
                         PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-                        SELECT DISTINCT ?entity ?label ?comment ?thumbnail
+                        SELECT DISTINCT ?entity ?label ?comment_lang ?comment_en ?thumbnail
                         WHERE {{
                             ?entity rdf:type dbo:{tipo_seleccionado} .
                             ?entity rdfs:label ?label .
-                            OPTIONAL {{ ?entity rdfs:comment ?comment . FILTER(LANG(?comment) = "en") }}
+                            OPTIONAL {{ ?entity rdfs:comment ?comment_lang . FILTER(LANG(?comment_lang) = "{get_current_language()}") }}
+                            OPTIONAL {{ ?entity rdfs:comment ?comment_en . FILTER(LANG(?comment_en) = "en") }}
                             OPTIONAL {{ ?entity dbo:thumbnail ?thumbnail }}
-                            FILTER(LANG(?label) = "en")
+                            FILTER(LANG(?label) = "{get_current_language()}")
                         }}
                         ORDER BY ?label
                         LIMIT 20
@@ -495,7 +521,9 @@ elif tipo_busqueda == "📂 Búsqueda por clase":
 
                         entidades = []
                         for result in results["results"]["bindings"]:
-                            comment_value = result.get('comment', {}).get('value', 'No description available')
+                            comment_lang = result.get('comment_lang', {}).get('value', '')
+                            comment_en = result.get('comment_en', {}).get('value', '')
+                            comment_value = comment_lang or comment_en or ''
                             entidad = {
                                 'uri': result['entity']['value'],
                                 'label': result['label']['value'],
@@ -638,12 +666,13 @@ else:  # Explorar ontología
                                 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
                                 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 
-                                SELECT DISTINCT ?entity ?label ?comment
+                                SELECT DISTINCT ?entity ?label ?comment_lang ?comment_en
                                 WHERE {{
                                     ?entity rdf:type dbo:{tipo} .
                                     ?entity rdfs:label ?label .
-                                    OPTIONAL {{ ?entity rdfs:comment ?comment . FILTER(LANG(?comment) = "en") }}
-                                    FILTER(LANG(?label) = "en")
+                                    OPTIONAL {{ ?entity rdfs:comment ?comment_lang . FILTER(LANG(?comment_lang) = "{get_current_language()}") }}
+                                    OPTIONAL {{ ?entity rdfs:comment ?comment_en . FILTER(LANG(?comment_en) = "en") }}
+                                    FILTER(LANG(?label) = "{get_current_language()}")
                                 }}
                                 ORDER BY ?label
                                 LIMIT 15
@@ -654,7 +683,9 @@ else:  # Explorar ontología
 
                                 entidades = []
                                 for result in results["results"]["bindings"]:
-                                    comment_value = result.get('comment', {}).get('value', 'No description available')
+                                    comment_lang = result.get('comment_lang', {}).get('value', '')
+                                    comment_en = result.get('comment_en', {}).get('value', '')
+                                    comment_value = comment_lang or comment_en or ''
                                     entidad = {
                                         'uri': result['entity']['value'],
                                         'label': result['label']['value'],
@@ -696,11 +727,26 @@ else:  # Explorar ontología
         st.markdown("---")
         st.info("💡 Usa los otros tipos de búsqueda para explorar datos específicos de ambos orígenes")
 
+# ==================== LANGUAGE SWITCHER ====================
+st.markdown("---")
+col1, col2, col3 = st.columns([1, 1, 1])
+with col3:
+    st.markdown("### 🌐 " + get_translation("language", get_current_language()))
+    def change_language():
+        lang = st.session_state.floating_lang_selector
+        set_language(lang)
+        st.rerun()
+
+    floating_lang = st.selectbox(
+        get_translation("select_language", get_current_language()),
+        options=list(LANGUAGES.keys()),
+        format_func=lambda x: LANGUAGES[x],
+        index=list(LANGUAGES.keys()).index(get_current_language()),
+        key="floating_lang_selector",
+        on_change=change_language,
+        label_visibility="collapsed"
+    )
+
 # ==================== FOOTER ====================
 st.markdown("---")
-st.markdown("""
-<div style='text-align: center; color: gray; padding: 2rem;'>
-    <p>🎓 Proyecto de Web Semántica - Buscador Semántico de Criptomonedas</p>
-    <p>Desarrollado con Streamlit, Owlready2 y DBpedia</p>
-</div>
-""", unsafe_allow_html=True)
+st.markdown(get_translation("footer", get_current_language()), unsafe_allow_html=True)

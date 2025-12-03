@@ -1378,6 +1378,11 @@
         <untitled-ontology-4:nombre>Bitcoin</untitled-ontology-4:nombre>
         <untitled-ontology-4:simbolo>BTC</untitled-ontology-4:simbolo>
         <rdfs:comment>Primera criptomoneda (2009), usa prueba de trabajo (PoW).</rdfs:comment>
+        <rdfs:label xml:lang="es">Bitcoin</rdfs:label>
+        <rdfs:label xml:lang="en">Bitcoin</rdfs:label>
+        <rdfs:label xml:lang="ru">Биткоин</rdfs:label>
+        <rdfs:label xml:lang="pt">Bitcoin</rdfs:label>
+        <rdfs:label xml:lang="ja">ビットコイン</rdfs:label>
     </owl:NamedIndividual>
     
 
